@@ -1,6 +1,5 @@
 # sergiogallegos.github.io
 
 ### My Web Page
-1. For the first version i used a template from designmodo.com
-1. working on ...
-1. sg.
+1. Sergio Gallegos.
+1. Last Revsion 10-14-22 sg.
