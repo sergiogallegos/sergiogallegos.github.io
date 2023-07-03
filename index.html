@@ -298,9 +298,36 @@
       <div class="wrap">
       
         <div class="fix-10-12 toCenter">
-          <h1 class="ae-1">Articles</h1>
-          <p class="ae-2"><span class="opacity-8">Work In Process...</span></p>
+          <h1 class="ae-1">//sergiogallegos.net</h1>
+          <p class="tiny"><span class="opacity-8"># Of Visits:</span></p>
+          <p class="tiny"><span class="opacity-8" id="visit-count"></span></p>
         </div>
+
+        <script>
+          // Check if visit count is stored in local storage
+          if(localStorage.getItem('visitCount')){
+            // Increment visit count by 1
+            var count = parseInt(localStorage.getItem('visitCount')) + 1;
+          } else {
+            // First visit, set count to 1
+            var count = 1;
+          }
+      
+          // Store updated visit count in local storage
+          localStorage.setItem('visitCount', count.toString());
+      
+          // Function to update the visit count element
+          function updateVisitCount() {
+            var visitCountElement = document.getElementById('visit-count');
+            visitCountElement.innerHTML = count;
+          }
+      
+          // Update visit count on page load
+          window.onload = function() {
+            updateVisitCount();
+          };
+        </script>
+
          <!-- Comment
         <div class="fix-12-12">  
           <ul class="grid grid-74 later equal margin-top-5">
