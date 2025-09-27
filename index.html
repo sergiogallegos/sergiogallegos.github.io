@@ -285,6 +285,76 @@
             color: #667eea;
         }
 
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-category {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #e5e7eb;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .skill-category-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .skill-category-header i {
+            font-size: 1.5rem;
+            color: #4169E1;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .skill-category-header h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #333;
+            margin: 0;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .skill-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+            border-color: #4169E1;
+        }
+
         /* Social Section */
         .social-section {
             background: linear-gradient(135deg, #333 0%, #1a1a1a 100%);
@@ -411,6 +481,7 @@
                                 <ul className="nav-links">
                                     <li><a onClick={() => scrollToSection('home')}>Home</a></li>
                                     <li><a onClick={() => scrollToSection('about')}>About</a></li>
+                                    <li><a onClick={() => scrollToSection('skills')}>Skills</a></li>
                                     <li><a onClick={() => scrollToSection('projects')}>Projects</a></li>
                                     <li><a onClick={() => scrollToSection('social')}>Connect</a></li>
                                 </ul>
@@ -423,10 +494,15 @@
                         <div className="container">
                             <div className="hero-content">
                                 <h1>Sergio Gallegos</h1>
-                                <p className="subtitle">Controls & Automation Engineer | Software Engineering Graduate Student</p>
+                                <p className="subtitle">Electromechanical Engineer | Automation Controls Specialist | Software Engineering Graduate Student</p>
                                 <p className="description">
-                                    Bridging industrial automation with modern software engineering. Over a decade of experience 
-                                    in PLC programming, motion control, vision systems, and robotics integration.
+                                    Bridging traditional industrial automation with cutting-edge AI and machine learning. 
+                                    From Mexico to the USA, combining mechanical, electrical, and software engineering 
+                                    to create intelligent automation solutions for the future.
+                                </p>
+                                <p className="description" style={{fontSize: '1rem', marginBottom: '2rem', opacity: '0.9'}}>
+                                    Want to know more about my profile? Check out my <a href="https://www.linkedin.com/in/sergio-gallegos-24271a66/" target="_blank" style={{color: 'white', textDecoration: 'underline'}}>LinkedIn</a> for work-related experience, 
+                                    <a href="https://github.com/sergiogallegos" target="_blank" style={{color: 'white', textDecoration: 'underline'}}> GitHub</a> for code-related skills, and other social networks below.
                                 </p>
                                 <a href="#projects" className="cta-button" onClick={() => scrollToSection('projects')}>
                                     View My Work
@@ -447,22 +523,99 @@
                                 </div>
                                 <div className="about-text">
                                     <p>
-                                        I am a Controls & Automation Engineer with a Bachelor's degree in Electromechanical Engineering, 
-                                        currently pursuing a Master of Science in Software Engineering (MSSwE). With over a decade of 
-                                        experience in industrial automation, I specialize in PLC programming, motion control, vision 
-                                        systems, and robotic integration.
+                                        I am an Electromechanical Engineer with extensive experience as an Automation Controls Engineer, 
+                                        working with automation companies and machine builders who design fully automated assembly machines. 
+                                        Currently pursuing a Master of Science in Software Engineering, I'm expanding my expertise into 
+                                        machine learning and deep learning to explore robotics and vision applications in industrial settings.
                                     </p>
                                     <p>
-                                        My journey includes both formal education and self-directed learning, driven by a strong passion 
-                                        for innovation, systems programming, and the fusion of software with industrial technology. 
-                                        I strive to bridge the gap between industrial control systems and modern software engineering, 
-                                        building scalable, intelligent solutions that drive real-world impact.
+                                        My journey spans from Mexico, where I completed my undergraduate studies, to the United States, 
+                                        where I've been working and continuing my education. With a strong foundation in mechanical and 
+                                        electrical engineering, I'm now integrating software engineering to create innovative solutions 
+                                        that bridge traditional industrial automation with modern AI and machine learning technologies.
                                     </p>
                                     <p>
-                                        <strong>Key interests:</strong> Automation Machinery Design & Control, Software Engineering & System Design, 
-                                        Machine Learning & Robotics, Embedded Systems & System Programming, and Web Development & Data-Driven Applications.
-                                        Father of 2, passionate about continuous learning and open source collaboration.
+                                        <strong>Background:</strong> Electromechanical Engineering, Automation Controls, Software Engineering (MSSwE), 
+                                        Machine Learning & Deep Learning, Web Development, and Industrial Robotics. Father of two toddlers, 
+                                        passionate about technology, sports, and continuous learning. Always been top of my class with 
+                                        strong foundations in mathematics and physics.
                                     </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Skills Section */}
+                    <section id="skills" className="section">
+                        <div className="container">
+                            <h2 className="section-title">Core Competencies</h2>
+                            <div className="skills-grid">
+                                <div className="skill-category">
+                                    <div className="skill-category-header">
+                                        <i className="fas fa-cogs"></i>
+                                        <h3>Industrial Automation</h3>
+                                    </div>
+                                    <div className="skill-tags">
+                                        <span className="skill-tag">PLC Programming</span>
+                                        <span className="skill-tag">Motion Control</span>
+                                        <span className="skill-tag">Vision Systems</span>
+                                        <span className="skill-tag">HMI/SCADA</span>
+                                        <span className="skill-tag">Robotics Integration</span>
+                                        <span className="skill-tag">Industrial Networking</span>
+                                        <span className="skill-tag">Ethernet/IP</span>
+                                        <span className="skill-tag">Assembly Machines</span>
+                                    </div>
+                                </div>
+                                
+                                <div className="skill-category">
+                                    <div className="skill-category-header">
+                                        <i className="fas fa-code"></i>
+                                        <h3>Software Engineering</h3>
+                                    </div>
+                                    <div className="skill-tags">
+                                        <span className="skill-tag">C++</span>
+                                        <span className="skill-tag">Python</span>
+                                        <span className="skill-tag">Rust</span>
+                                        <span className="skill-tag">JavaScript</span>
+                                        <span className="skill-tag">React</span>
+                                        <span className="skill-tag">Web Development</span>
+                                        <span className="skill-tag">Systems Programming</span>
+                                        <span className="skill-tag">API Development</span>
+                                    </div>
+                                </div>
+                                
+                                <div className="skill-category">
+                                    <div className="skill-category-header">
+                                        <i className="fas fa-brain"></i>
+                                        <h3>Machine Learning & AI</h3>
+                                    </div>
+                                    <div className="skill-tags">
+                                        <span className="skill-tag">Deep Learning</span>
+                                        <span className="skill-tag">Computer Vision</span>
+                                        <span className="skill-tag">Neural Networks</span>
+                                        <span className="skill-tag">TensorFlow</span>
+                                        <span className="skill-tag">PyTorch</span>
+                                        <span className="skill-tag">SIMD Optimization</span>
+                                        <span className="skill-tag">Autograd Systems</span>
+                                        <span className="skill-tag">Robotics AI</span>
+                                    </div>
+                                </div>
+                                
+                                <div className="skill-category">
+                                    <div className="skill-category-header">
+                                        <i className="fas fa-graduation-cap"></i>
+                                        <h3>Engineering Foundation</h3>
+                                    </div>
+                                    <div className="skill-tags">
+                                        <span className="skill-tag">Electromechanical</span>
+                                        <span className="skill-tag">Mathematics</span>
+                                        <span className="skill-tag">Physics</span>
+                                        <span className="skill-tag">Control Systems</span>
+                                        <span className="skill-tag">Signal Processing</span>
+                                        <span className="skill-tag">Linear Algebra</span>
+                                        <span className="skill-tag">Calculus</span>
+                                        <span className="skill-tag">Statistics</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -496,18 +649,27 @@
                                     </div>
                                 </div>
                                 
-                                {/* Placeholder for future projects */}
                                 <div className="project-card">
                                     <div className="project-icon">
-                                        <i className="fas fa-code"></i>
+                                        <i className="fas fa-brain"></i>
                                     </div>
-                                    <h3>Coming Soon</h3>
+                                    <h3>TensorCore</h3>
                                     <p>
-                                        More exciting projects are in development. Stay tuned for updates 
-                                        on innovative solutions and cutting-edge implementations.
+                                        A high-performance C++ tensor library with Python bindings for machine learning. 
+                                        Educational implementation designed to understand the core mathematics and implementations 
+                                        behind popular ML libraries like NumPy, PyTorch, and TensorFlow.
                                     </p>
                                     <div className="tech-stack">
-                                        <span className="tech-tag">In Development</span>
+                                        <span className="tech-tag">C++</span>
+                                        <span className="tech-tag">Python</span>
+                                        <span className="tech-tag">Machine Learning</span>
+                                        <span className="tech-tag">SIMD</span>
+                                        <span className="tech-tag">Autograd</span>
+                                    </div>
+                                    <div className="project-links">
+                                        <a href="https://github.com/sergiogallegos/tensorcore" target="_blank" className="project-link">
+                                            <i className="fab fa-github"></i> View Code
+                                        </a>
                                     </div>
                                 </div>
                             </div>
