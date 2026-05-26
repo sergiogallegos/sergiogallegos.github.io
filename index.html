@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sergio Gallegos</title>
     <meta name="description" content="Sergio Gallegos — Senior Engineer and MSSwE student. Industrial automation, software engineering, and AI projects.">
-    <link rel="canonical" href="https://sergiogallegos.github.io/">
+    <link rel="canonical" href="https://sergiogallegos.net/">
     <meta property="og:title" content="Sergio Gallegos">
     <meta property="og:description" content="Senior Engineer and MSSwE student. Industrial automation, software engineering, and AI projects.">
-    <meta property="og:url" content="https://sergiogallegos.github.io/">
+    <meta property="og:url" content="https://sergiogallegos.net/">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://sergiogallegos.github.io/me36.png">
+    <meta property="og:image" content="https://sergiogallegos.net/me36.png">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Sergio Gallegos">
     <meta name="twitter:description" content="Senior Engineer and MSSwE student. Industrial automation, software engineering, and AI projects.">
-    <meta name="twitter:image" content="https://sergiogallegos.github.io/me36.png">
+    <meta name="twitter:image" content="https://sergiogallegos.net/me36.png">
     <link rel="icon" href="favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
@@ -349,6 +349,81 @@
             color: #6e6e73;
         }
 
+        .project-proof {
+            list-style: none;
+            margin: -0.35rem 0 1.25rem;
+            display: grid;
+            gap: 0.4rem;
+        }
+
+        .project-proof li {
+            color: #424245;
+            font-size: 0.88rem;
+            line-height: 1.45;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .project-proof li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.62em;
+            width: 5px;
+            height: 5px;
+            background: #1d1d1f;
+            border-radius: 50%;
+        }
+
+        /* Writing Section */
+        .writing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .writing-card {
+            background: #ffffff;
+            border: 1px solid #d2d2d7;
+            border-radius: 12px;
+            padding: 1.75rem;
+        }
+
+        a.writing-card {
+            display: block;
+            color: inherit;
+            text-decoration: none;
+            transition: box-shadow 0.2s ease;
+        }
+
+        a.writing-card:hover {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .writing-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 0.75rem;
+            line-height: 1.35;
+        }
+
+        .writing-card p {
+            color: #6e6e73;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .writing-meta {
+            color: #86868b;
+            font-size: 0.82rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
         /* Skills Section */
         .skills-grid {
             display: grid;
@@ -559,6 +634,7 @@
                     <li><a href="#about">About</a></li>
                     <li><a href="#skills">Skills</a></li>
                     <li><a href="#projects">Projects</a></li>
+                    <li><a href="#writing">Writing</a></li>
                     <li><a href="#social">Connect</a></li>
                 </ul>
             </div>
@@ -639,16 +715,10 @@
                         <h3>Industrial Automation</h3>
                     </div>
                     <div class="skill-tags">
-                        <span class="skill-tag">PLC Programming</span>
-                        <span class="skill-tag">HMI Development</span>
-                        <span class="skill-tag">Robot Integration</span>
-                        <span class="skill-tag">Computer Vision Systems</span>
-                        <span class="skill-tag">Software Solutions</span>
-                        <span class="skill-tag">MES/ERP</span>
-                        <span class="skill-tag">SCADA</span>
-                        <span class="skill-tag">Motion Control</span>
-                        <span class="skill-tag">Web Solutions</span>
-                        <span class="skill-tag">Traceability Systems</span>
+                        <span class="skill-tag">PLC, HMI &amp; SCADA Systems</span>
+                        <span class="skill-tag">Robotics &amp; Vision Integration</span>
+                        <span class="skill-tag">EtherNet/IP &amp; Industrial Networking</span>
+                        <span class="skill-tag">Traceability &amp; MES Integration</span>
                     </div>
                 </div>
 
@@ -658,19 +728,10 @@
                         <h3>Software Engineering</h3>
                     </div>
                     <div class="skill-tags">
-                        <span class="skill-tag">Rust</span>
-                        <span class="skill-tag">Backend Engineering</span>
-                        <span class="skill-tag">Databases</span>
-                        <span class="skill-tag">Software Architecture and Design</span>
-                        <span class="skill-tag">V&amp;V</span>
-                        <span class="skill-tag">Project Management</span>
-                        <span class="skill-tag">Algorithms and Data Structures</span>
-                        <span class="skill-tag">OOP</span>
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">C++</span>
-                        <span class="skill-tag">C</span>
-                        <span class="skill-tag">C#</span>
-                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">Rust Systems Programming</span>
+                        <span class="skill-tag">Python Automation &amp; Data Workflows</span>
+                        <span class="skill-tag">Backend Architecture</span>
+                        <span class="skill-tag">Databases &amp; APIs</span>
                     </div>
                 </div>
 
@@ -680,36 +741,8 @@
                         <h3>Machine Learning & AI</h3>
                     </div>
                     <div class="skill-tags">
-                        <span class="skill-tag">Deep Learning</span>
                         <span class="skill-tag">Computer Vision</span>
-                        <span class="skill-tag">Neural Networks</span>
-                        <span class="skill-tag">TensorFlow</span>
-                        <span class="skill-tag">PyTorch</span>
-                        <span class="skill-tag">SIMD Optimization</span>
-                        <span class="skill-tag">Autograd Systems</span>
-                        <span class="skill-tag">Robotics AI</span>
-                        <span class="skill-tag">GPU Architecture</span>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <div class="skill-category-header">
-                        <i class="fas fa-graduation-cap"></i>
-                        <h3>Engineering Foundation</h3>
-                    </div>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Electromechanical</span>
-                        <span class="skill-tag">Mathematics</span>
-                        <span class="skill-tag">Physics</span>
-                        <span class="skill-tag">Control Systems</span>
-                        <span class="skill-tag">Signal Processing</span>
-                        <span class="skill-tag">Linear Algebra</span>
-                        <span class="skill-tag">Calculus</span>
-                        <span class="skill-tag">Statistics</span>
-                        <span class="skill-tag">Thermodynamics</span>
-                        <span class="skill-tag">Heat Transfer</span>
-                        <span class="skill-tag">Mechanical Design</span>
-                        <span class="skill-tag">Manufacturing Process</span>
+                        <span class="skill-tag">ML for Manufacturing Systems</span>
                     </div>
                 </div>
             </div>
@@ -726,15 +759,20 @@
                     </div>
                     <h3>Rust Ethernet/IP</h3>
                     <p>
-                        A comprehensive implementation of the Ethernet/IP protocol in Rust.
-                        This project demonstrates advanced network programming and protocol
-                        implementation using modern systems programming techniques.
+                        Production-focused EtherNet/IP library for Allen-Bradley CompactLogix and
+                        ControlLogix PLCs, validated on real hardware, published on crates.io and
+                        NuGet, with Rust, C#, and Python wrappers.
                     </p>
+                    <ul class="project-proof">
+                        <li>Validated on real Allen-Bradley hardware: 5069-L320ERMS3 fw35 and 1756-L81ES fw37.</li>
+                        <li>More than 5,000 crate downloads, plus NuGet distribution for .NET users.</li>
+                    </ul>
                     <div class="tech-stack">
                         <span class="tech-tag">Rust</span>
-                        <span class="tech-tag">Networking</span>
-                        <span class="tech-tag">Protocol</span>
-                        <span class="tech-tag">Systems Programming</span>
+                        <span class="tech-tag">EtherNet/IP</span>
+                        <span class="tech-tag">Allen-Bradley PLCs</span>
+                        <span class="tech-tag">C#</span>
+                        <span class="tech-tag">Python</span>
                     </div>
                     <div class="project-links">
                         <a href="https://github.com/sergiogallegos/rust-ethernet-ip" target="_blank" rel="noopener noreferrer" class="project-link">
@@ -748,17 +786,18 @@
                     </div>
                     <h3>OpenWebHMI</h3>
                     <p>
-                        OpenWebHMI is an open source web first SCADA/HMI platform
-                        for small and mid-size industrial systems. It brings browser-based
-                        operator interfaces, plant-floor connectivity, and modern web
-                        software practices into one open industrial automation platform.
+                        OpenWebHMI is an open-source, MIT-licensed alternative to Ignition and
+                        FactoryTalk Optix, written in Rust with Python 3.11+ scripting for
+                        in-platform machine learning. The platform is built to displace Java/Jython
+                        stacks with modern systems software and Python-native automation workflows.
                     </p>
                     <div class="tech-stack">
+                        <span class="tech-tag">Rust</span>
+                        <span class="tech-tag">Python 3.11+</span>
                         <span class="tech-tag">HMI</span>
                         <span class="tech-tag">SCADA</span>
-                        <span class="tech-tag">Industrial Automation</span>
-                        <span class="tech-tag">Web Interfaces</span>
-                        <span class="tech-tag">Open Source</span>
+                        <span class="tech-tag">MIT Licensed</span>
+                        <span class="tech-tag">Industrial ML</span>
                     </div>
                     <div class="project-links">
                         <a href="https://openwebhmi.com" target="_blank" rel="noopener noreferrer" class="project-link">
@@ -820,6 +859,41 @@
                         </a>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="writing" class="section">
+        <div class="container">
+            <h2 class="section-title">Technical Writing</h2>
+            <div class="writing-grid">
+                <a href="blog/why-i-wrote-an-ethernet-ip-driver-in-rust.html" class="writing-card">
+                    <h3>Why I Wrote an EtherNet/IP Driver in Rust</h3>
+                    <p>
+                        A practical engineering story about building PLC connectivity for real
+                        Allen-Bradley hardware, why memory safety matters on the plant floor, and
+                        what it takes to ship industrial protocol software beyond a demo.
+                    </p>
+                    <div class="writing-meta">Read article</div>
+                </a>
+                <a href="blog/how-i-got-here.html" class="writing-card">
+                    <h3>How I Got Here</h3>
+                    <p>
+                        From a working-class neighborhood in Mexico to manufacturing, controls,
+                        software engineering, open-source industrial tooling, and computational
+                        systems that still connect back to the plant floor.
+                    </p>
+                    <div class="writing-meta">Read article</div>
+                </a>
+                <a href="blog/rethinking-the-scada-stack-rust-runtime-python-scripting.html" class="writing-card">
+                    <h3>Rethinking the SCADA Stack: Rust Runtime, Python 3.11+ Scripting</h3>
+                    <p>
+                        A technical argument for OpenWebHMI's architecture: Rust for the gateway,
+                        CPython workers for scripting and ML, and a focused open-source scope for
+                        small and mid-size industrial systems.
+                    </p>
+                    <div class="writing-meta">Read article</div>
+                </a>
             </div>
         </div>
     </section>

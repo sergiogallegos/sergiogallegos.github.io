@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why I Wrote an EtherNet/IP Driver in Rust | Sergio Gallegos</title>
+    <meta name="description" content="A practical engineering story about building a production-focused EtherNet/IP driver in Rust for Allen-Bradley CompactLogix and ControlLogix PLCs.">
+    <link rel="canonical" href="https://sergiogallegos.net/blog/why-i-wrote-an-ethernet-ip-driver-in-rust.html">
+    <meta property="og:title" content="Why I Wrote an EtherNet/IP Driver in Rust">
+    <meta property="og:description" content="A practical engineering story about building a production-focused EtherNet/IP driver in Rust for Allen-Bradley PLCs.">
+    <meta property="og:url" content="https://sergiogallegos.net/blog/why-i-wrote-an-ethernet-ip-driver-in-rust.html">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="https://sergiogallegos.net/me36.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Why I Wrote an EtherNet/IP Driver in Rust">
+    <meta name="twitter:description" content="A practical engineering story about building a production-focused EtherNet/IP driver in Rust for Allen-Bradley PLCs.">
+    <meta name="twitter:image" content="https://sergiogallegos.net/me36.png">
+    <link rel="icon" href="../favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', 'Segoe UI', sans-serif;
+            line-height: 1.7;
+            color: #1d1d1f;
+            background: #ffffff;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.86);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            border-bottom: 1px solid #d2d2d7;
+        }
+
+        .nav-content {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0.875rem 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo,
+        .back-link,
+        .article a {
+            color: #1d1d1f;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .logo {
+            font-size: 1.05rem;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .back-link {
+            color: #6e6e73;
+            font-size: 0.9rem;
+        }
+
+        .article-header {
+            padding: 88px 0 40px;
+        }
+
+        .article-kicker {
+            color: #86868b;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: clamp(2.35rem, 7vw, 4.5rem);
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+        }
+
+        .lede {
+            color: #424245;
+            font-size: 1.25rem;
+            line-height: 1.65;
+            max-width: 760px;
+        }
+
+        .article {
+            padding-bottom: 88px;
+        }
+
+        .article h2 {
+            font-size: 1.55rem;
+            line-height: 1.25;
+            letter-spacing: -0.01em;
+            margin: 2.75rem 0 0.8rem;
+        }
+
+        .article p {
+            color: #424245;
+            font-size: 1.05rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .article ul {
+            color: #424245;
+            font-size: 1.05rem;
+            margin: 0 0 1.5rem 1.25rem;
+        }
+
+        .article li {
+            margin-bottom: 0.5rem;
+        }
+
+        .callout {
+            border-left: 4px solid #1d1d1f;
+            background: #f5f5f7;
+            padding: 1.25rem 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .callout p {
+            margin-bottom: 0;
+            color: #1d1d1f;
+        }
+
+        .article-footer {
+            border-top: 1px solid #d2d2d7;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+        }
+
+        @media (max-width: 640px) {
+            .nav-content {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 0.4rem;
+            }
+
+            .article-header {
+                padding-top: 56px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="../index.html" class="logo">Sergio Gallegos</a>
+            <a href="../index.html#writing" class="back-link">Back to writing</a>
+        </div>
+    </nav>
+
+    <main>
+        <header class="article-header">
+            <div class="container">
+                <div class="article-kicker">Industrial Software</div>
+                <h1>Why I Wrote an EtherNet/IP Driver in Rust</h1>
+                <p class="lede">
+                    Industrial automation has no shortage of PLC drivers. What it has very little of is modern,
+                    open, production-focused protocol software that feels natural from Rust, .NET, and Python
+                    while still respecting the reality of Allen-Bradley hardware on the plant floor.
+                </p>
+            </div>
+        </header>
+
+        <article class="article">
+            <div class="container">
+                <p>
+                    I wrote <a href="https://github.com/sergiogallegos/rust-ethernet-ip" target="_blank" rel="noopener noreferrer">rust-ethernet-ip</a>
+                    because the gap between industrial automation and modern software engineering is still too wide.
+                    On one side, there are PLCs, HMIs, machine builders, production lines, and equipment that must
+                    run reliably. On the other side, there are developers who expect package managers, tests, memory
+                    safety, clear APIs, and language bindings that do not feel like an afterthought.
+                </p>
+
+                <p>
+                    EtherNet/IP is not an academic protocol for me. It is the way many real machines talk to
+                    Allen-Bradley CompactLogix and ControlLogix PLCs. If a library only works in a simulator, or
+                    only demonstrates a happy path, it is not enough. The important question is whether it can
+                    connect to real hardware, survive real engineering constraints, and become boring enough to use
+                    as infrastructure.
+                </p>
+
+                <h2>The problem was not just connectivity</h2>
+                <p>
+                    There are many ways to move data in and out of a PLC. The harder problem is building a driver
+                    that fits how engineers actually build systems today. Industrial teams increasingly need to
+                    connect PLC data to services, databases, analytics tools, dashboards, test benches, machine
+                    learning workflows, and higher-level applications. A driver should make that integration easier,
+                    not lock the team into one runtime or one vendor-shaped workflow.
+                </p>
+
+                <p>
+                    I wanted a foundation that could serve more than one audience. Rust gives the core library a
+                    strong systems-programming base. C# matters because .NET is common in industrial applications.
+                    Python matters because scripting, data analysis, and machine learning workflows are increasingly
+                    part of automation work. The point was not to write a Rust demo. The point was to build a
+                    library that could sit underneath practical industrial software.
+                </p>
+
+                <h2>Why Rust</h2>
+                <p>
+                    Rust is a good fit for protocol work because the details matter. Packet structure matters.
+                    Lifetimes and ownership matter. Error handling matters. Long-running software that talks to
+                    machines should be explicit about what can fail and how those failures are represented.
+                </p>
+
+                <p>
+                    The value of Rust here is not hype. It is the ability to write low-level networking code without
+                    giving up modern tooling, memory safety, and a package ecosystem. For industrial software, that
+                    combination is important. A PLC communication library is not a place where hidden undefined
+                    behavior or casual memory handling should be acceptable.
+                </p>
+
+                <div class="callout">
+                    <p>
+                        The goal was simple: make Allen-Bradley PLC communication available through a modern,
+                        testable, open-source library that can be used from Rust, C#, and Python.
+                    </p>
+                </div>
+
+                <h2>Real hardware changes the standard</h2>
+                <p>
+                    The library has been validated on real Allen-Bradley hardware, including a 5069-L320ERMS3 on
+                    firmware 35 and a 1756-L81ES on firmware 37. That detail matters because industrial protocol
+                    software is full of edge cases that do not show up until you leave the comfortable world of
+                    examples and start talking to actual controllers.
+                </p>
+
+                <p>
+                    Real hardware forces a different level of seriousness. You discover where assumptions are too
+                    loose. You learn which errors need to be surfaced clearly. You find out whether your API is
+                    usable when someone is trying to commission a machine, debug a line, or integrate PLC data into
+                    a larger system.
+                </p>
+
+                <h2>Shipping matters</h2>
+                <p>
+                    I also wanted the project to be distributed like real software. The Rust crate is published on
+                    crates.io and has more than 5,000 downloads. The .NET package is available through NuGet. The
+                    wrappers are not decorative; they are part of the strategy. Industrial software teams do not all
+                    live in the same language, and a useful library should meet them where they are.
+                </p>
+
+                <p>
+                    Open source is part of that same strategy. Industrial automation has too many important systems
+                    hidden behind opaque tools, closed integrations, and outdated scripting environments. A driver
+                    like this gives engineers something they can inspect, test, extend, and build on.
+                </p>
+
+                <h2>What I learned</h2>
+                <p>
+                    The biggest lesson is that industrial software needs both domain knowledge and software
+                    discipline. Knowing PLCs is not enough. Knowing Rust is not enough. The useful work happens in
+                    the overlap: understanding how machines are commissioned, how production environments fail, how
+                    protocol details behave, and how to turn that into APIs that other engineers can trust.
+                </p>
+
+                <p>
+                    That is also why this project connects to my broader work. I am interested in industrial systems
+                    that are open, programmable, and ready for modern computation. EtherNet/IP connectivity is one
+                    layer of that. HMI platforms, Python scripting, machine learning, databases, and traceability are
+                    other layers. The common theme is the same: bring modern software engineering closer to real
+                    machines.
+                </p>
+
+                <h2>What comes next</h2>
+                <p>
+                    The next step is not only adding features. It is continuing to harden the library against real
+                    usage, improving documentation, expanding examples, and making the bindings easier to use from
+                    different environments. A communication driver becomes valuable when it disappears into the
+                    background and lets engineers focus on the system they are actually building.
+                </p>
+
+                <p>
+                    That is the standard I want for rust-ethernet-ip: not a student exercise, not a thin wrapper,
+                    and not a protocol experiment, but a production-focused foundation for Allen-Bradley connectivity
+                    in modern industrial software.
+                </p>
+
+                <div class="article-footer">
+                    <p>
+                        Project: <a href="https://github.com/sergiogallegos/rust-ethernet-ip" target="_blank" rel="noopener noreferrer">rust-ethernet-ip on GitHub</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+    </main>
+</body>
+</html>

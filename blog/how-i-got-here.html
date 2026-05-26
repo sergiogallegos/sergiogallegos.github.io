@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How I Got Here | Sergio Gallegos</title>
+    <meta name="description" content="Sergio Gallegos on growing up in Mexico, learning manufacturing first, moving into automation and software, and building open-source industrial software.">
+    <link rel="canonical" href="https://sergiogallegos.net/blog/how-i-got-here.html">
+    <meta property="og:title" content="How I Got Here">
+    <meta property="og:description" content="From manufacturing and controls in Mexico to software engineering, open-source industrial tooling, and computational systems.">
+    <meta property="og:url" content="https://sergiogallegos.net/blog/how-i-got-here.html">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="https://sergiogallegos.net/me36.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How I Got Here">
+    <meta name="twitter:description" content="From manufacturing and controls in Mexico to software engineering, open-source industrial tooling, and computational systems.">
+    <meta name="twitter:image" content="https://sergiogallegos.net/me36.png">
+    <link rel="icon" href="../favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', 'Segoe UI', sans-serif;
+            line-height: 1.7;
+            color: #1d1d1f;
+            background: #ffffff;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.86);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            border-bottom: 1px solid #d2d2d7;
+        }
+
+        .nav-content {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0.875rem 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo,
+        .back-link,
+        .article a {
+            color: #1d1d1f;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .logo {
+            font-size: 1.05rem;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .back-link {
+            color: #6e6e73;
+            font-size: 0.9rem;
+        }
+
+        .article-header {
+            padding: 88px 0 40px;
+        }
+
+        .article-kicker {
+            color: #86868b;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: clamp(2.35rem, 7vw, 4.5rem);
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+        }
+
+        .lede {
+            color: #424245;
+            font-size: 1.25rem;
+            line-height: 1.65;
+            max-width: 760px;
+        }
+
+        .article {
+            padding-bottom: 88px;
+        }
+
+        .article h2 {
+            font-size: 1.55rem;
+            line-height: 1.25;
+            letter-spacing: -0.01em;
+            margin: 2.75rem 0 0.8rem;
+        }
+
+        .article p {
+            color: #424245;
+            font-size: 1.05rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .article strong {
+            color: #1d1d1f;
+        }
+
+        .article code {
+            background: #f5f5f7;
+            border: 1px solid #e8e8ed;
+            border-radius: 5px;
+            color: #1d1d1f;
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+            font-size: 0.92em;
+            padding: 0.08rem 0.3rem;
+        }
+
+        .article-footer {
+            border-top: 1px solid #d2d2d7;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+        }
+
+        @media (max-width: 640px) {
+            .nav-content {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 0.4rem;
+            }
+
+            .article-header {
+                padding-top: 56px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="../index.html" class="logo">Sergio Gallegos</a>
+            <a href="../index.html#writing" class="back-link">Back to writing</a>
+        </div>
+    </nav>
+
+    <main>
+        <header class="article-header">
+            <div class="container">
+                <div class="article-kicker">Background</div>
+                <h1>How I Got Here</h1>
+                <p class="lede">
+                    I came to software through machines first: machining, control systems,
+                    production lines, and years of industrial automation work where code always
+                    had a physical consequence somewhere at the end of it.
+                </p>
+            </div>
+        </header>
+
+        <article class="article">
+            <div class="container">
+                <p>
+                    I grew up in Mexico, raised by my grandparents in a working-class neighborhood.
+                    My mother was 19 when I was born; my biological father was not part of my life.
+                    What my grandparents gave me, alongside everything else, was the belief that a
+                    kid from that neighborhood could go as far as the work would take him.
+                </p>
+
+                <p>
+                    I got my first PC at 12. That decided more about the next twenty years of my
+                    life than I understood at the time.
+                </p>
+
+                <h2>Manufacturing first, software second</h2>
+                <p>
+                    In high school I started running machines: lathes, milling machines, grinders,
+                    and CNC. Not as a hobby. As actual coursework, hands on the steel, learning what
+                    tolerances mean when you are the one holding the part. By the time I chose
+                    Electromechanical Engineering for my bachelor's degree, I already knew what a
+                    machine sounded like when something was wrong with it.
+                </p>
+
+                <p>
+                    I completed my entire engineering education in Mexico. The early part of my
+                    career was machining, mechanical design, and then control systems: PLCs, control
+                    circuits, and troubleshooting production lines that could not afford to be down.
+                    That hands-on grounding is the foundation everything else sits on. I have never
+                    had to imagine what a plant floor looks like, because I have spent most of my
+                    working life standing on one.
+                </p>
+
+                <h2>The shift toward software</h2>
+                <p>
+                    Once I was deep into automation, the pattern became hard to miss. The interesting
+                    problems were drifting upward, out of the ladder logic and into the layer above it:
+                    data, simulation, models, and decisions made by software rather than by switches.
+                </p>
+
+                <p>
+                    I started teaching myself software in parallel with my automation work. Python
+                    first, then C++ and Rust. Eventually it became clear that self-teaching, while it
+                    had taken me a long way, was not going to be enough for where I wanted to go. I
+                    moved to the United States and started a Master of Science in Software Engineering
+                    at UTEP, focused on software architecture, system design, verification and
+                    validation, and modern development practices.
+                </p>
+
+                <p>
+                    Today I am a Senior Engineer designing and integrating PLCs, HMIs, robotics, and
+                    vision systems for fully automated assembly machines, while finishing my master's
+                    and building open-source tooling for the industrial software space.
+                </p>
+
+                <h2>What I am building</h2>
+                <p>
+                    Most of my deliberate effort outside of work goes into two open-source projects.
+                </p>
+
+                <p>
+                    <strong><a href="https://github.com/sergiogallegos/rust-ethernet-ip" target="_blank" rel="noopener noreferrer">rust-ethernet-ip</a></strong>
+                    is a production-focused EtherNet/IP driver for Allen-Bradley CompactLogix and
+                    ControlLogix PLCs, written in Rust with C# through NuGet and Python wrappers. It
+                    is published on crates.io, validated against real hardware, currently a
+                    5069-L320ERMS3 on firmware 35 and a 1756-L81ES on firmware 37 through a
+                    1756-EN3TR, and the validation evidence is in the repo. I started it because the
+                    existing options for talking to Allen-Bradley PLCs from modern systems languages
+                    were thin, and because I wanted a driver I would trust in my own production
+                    environments.
+                </p>
+
+                <p>
+                    <strong><a href="https://openwebhmi.com" target="_blank" rel="noopener noreferrer">OpenWebHMI</a></strong>
+                    is a larger bet: an open-source, MIT-licensed, web-first SCADA and HMI platform
+                    for small and mid-size industrial systems. Rust gateway as a single static binary,
+                    React and TypeScript designer and runtime, CPython 3.11+ as the scripting host so
+                    that <code>numpy</code>, <code>pandas</code>, <code>scikit-learn</code>, and
+                    modern ML libraries are first-class citizens instead of external integration
+                    projects. It is pre-alpha, deliberately scoped, and aimed at the gap between the
+                    closed-source giants and what a small plant can actually afford to run.
+                </p>
+
+                <h2>Teaching</h2>
+                <p>
+                    I also teach, in Spanish. My YouTube series,
+                    <a href="https://www.youtube.com/@imsergiog" target="_blank" rel="noopener noreferrer">Inteligencia Artificial Desde Cero</a>,
+                    covers Python, the mathematics behind machine learning, and deep learning
+                    fundamentals. Spanish-speaking engineers are underserved in this material, and I
+                    want to help close that gap.
+                </p>
+
+                <h2>What I care about technically</h2>
+                <p>
+                    My current focus is the bridge between physical systems and computation: taking
+                    the mathematical models that describe real industrial processes and turning them
+                    into software that simulates, optimizes, and runs them. That pulls me toward
+                    computational science, numerical methods, and the kind of software architecture
+                    that has to survive in environments where downtime is expensive and the code
+                    outlives its authors.
+                </p>
+
+                <p>
+                    I am reinforcing my mathematical foundations in parallel, starting with linear
+                    algebra, as preparation for going deeper into that territory.
+                </p>
+
+                <h2>Outside of all that</h2>
+                <p>
+                    I am a father of two. They are the reason for the discipline behind any of this.
+                    I am a soccer fan. I build things: machines and software. I
+                    prefer work that has a physical consequence somewhere at the end of it, which is
+                    probably why I ended up where I did.
+                </p>
+
+                <p>
+                    If you want to talk about industrial software, Rust in industrial contexts,
+                    open-source SCADA, or computational science applied to manufacturing, I am
+                    reachable on <a href="https://www.linkedin.com/in/sergio-gallegos-24271a66/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    and <a href="https://github.com/sergiogallegos" target="_blank" rel="noopener noreferrer">GitHub</a>.
+                </p>
+
+                <div class="article-footer">
+                    <p>
+                        Related work:
+                        <a href="https://github.com/sergiogallegos/rust-ethernet-ip" target="_blank" rel="noopener noreferrer">rust-ethernet-ip</a>
+                        and
+                        <a href="https://openwebhmi.com" target="_blank" rel="noopener noreferrer">OpenWebHMI</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+    </main>
+</body>
+</html>

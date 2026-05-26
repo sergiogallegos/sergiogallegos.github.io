@@ -1,6 +1,6 @@
 # Sergio Gallegos - Portfolio Website
 
-🌐 **Live Website:** [sergiogallegos.github.io](https://sergiogallegos.github.io)
+🌐 **Live Website:** [sergiogallegos.net](https://sergiogallegos.net)
 
 ## 👨‍💼 About
 
@@ -18,35 +18,43 @@ Bridging traditional industrial automation with cutting-edge AI and machine lear
 ## 🛠️ Core Competencies
 
 ### Industrial Automation
-- PLC Programming, Motion Control, Vision Systems
-- HMI/SCADA, Robotics Integration, Industrial Networking
-- Ethernet/IP, Assembly Machines
+- PLC, HMI, and SCADA systems
+- Robotics and vision integration
+- EtherNet/IP and industrial networking
+- Traceability and MES integration
 
 ### Software Engineering
-- C++, Python, Rust, JavaScript, React
-- Web Development, Systems Programming, API Development
+- Rust systems programming
+- Python automation and data workflows
+- Backend architecture
+- Databases and APIs
 
 ### Machine Learning & AI
-- Deep Learning, Computer Vision, Neural Networks
-- TensorFlow, PyTorch, SIMD Optimization, Autograd Systems
-- Robotics AI
-
-### Engineering Foundation
-- Electromechanical, Mathematics, Physics
-- Control Systems, Signal Processing, Linear Algebra
-- Calculus, Statistics
+- Computer vision
+- Machine learning for manufacturing systems
 
 ## 🚀 Featured Projects
 
 ### [Rust Ethernet/IP](https://github.com/sergiogallegos/rust-ethernet-ip)
-A comprehensive implementation of the Ethernet/IP protocol in Rust. Demonstrates advanced network programming and protocol implementation using modern systems programming techniques.
+Production-focused EtherNet/IP library for Allen-Bradley CompactLogix and ControlLogix PLCs, validated on real hardware (5069-L320ERMS3 fw35, 1756-L81ES fw37), published on crates.io and NuGet, with Rust/C#/Python wrappers. More than 5,000 crate downloads.
 
-**Technologies:** Rust, Networking, Protocol, Systems Programming
+**Technologies:** Rust, EtherNet/IP, Allen-Bradley PLCs, C#, Python
+
+### [OpenWebHMI](https://openwebhmi.com)
+Open-source, MIT-licensed alternative to Ignition and FactoryTalk Optix, written in Rust with Python 3.11+ scripting for in-platform machine learning. Built to displace Java/Jython industrial automation stacks with modern systems software and Python-native automation workflows.
+
+**Technologies:** Rust, Python 3.11+, HMI, SCADA, Industrial ML
 
 ### [TensorCore](https://github.com/sergiogallegos/tensorcore)
 A high-performance C++ tensor library with Python bindings for machine learning. Educational implementation designed to understand the core mathematics and implementations behind popular ML libraries like NumPy, PyTorch, and TensorFlow.
 
 **Technologies:** C++, Python, Machine Learning, SIMD, Autograd
+
+## ✍️ Technical Writing
+
+- Why I Wrote an EtherNet/IP Driver in Rust
+- How I Got Here
+- Rethinking the SCADA Stack: Rust Runtime, Python 3.11+ Scripting
 
 ## 🔗 Connect With Me
 

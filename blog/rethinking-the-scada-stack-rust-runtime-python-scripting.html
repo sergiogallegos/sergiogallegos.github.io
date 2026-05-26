@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rethinking the SCADA Stack: Rust Runtime, Python 3.11+ Scripting | Sergio Gallegos</title>
+    <meta name="description" content="A technical argument for OpenWebHMI's architecture: Rust runtime, CPython 3.11+ worker scripting, and an open-source SCADA/HMI stack for small and mid-size industrial systems.">
+    <link rel="canonical" href="https://sergiogallegos.net/blog/rethinking-the-scada-stack-rust-runtime-python-scripting.html">
+    <meta property="og:title" content="Rethinking the SCADA Stack: Rust Runtime, Python 3.11+ Scripting">
+    <meta property="og:description" content="A technical argument for OpenWebHMI's architecture: Rust runtime, CPython 3.11+ workers, and open-source industrial software.">
+    <meta property="og:url" content="https://sergiogallegos.net/blog/rethinking-the-scada-stack-rust-runtime-python-scripting.html">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="https://sergiogallegos.net/me36.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Rethinking the SCADA Stack: Rust Runtime, Python 3.11+ Scripting">
+    <meta name="twitter:description" content="A technical argument for OpenWebHMI's architecture: Rust runtime, CPython 3.11+ workers, and open-source industrial software.">
+    <meta name="twitter:image" content="https://sergiogallegos.net/me36.png">
+    <link rel="icon" href="../favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', 'Segoe UI', sans-serif;
+            line-height: 1.7;
+            color: #1d1d1f;
+            background: #ffffff;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.86);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            border-bottom: 1px solid #d2d2d7;
+        }
+
+        .nav-content {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0.875rem 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo,
+        .back-link,
+        .article a {
+            color: #1d1d1f;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .logo {
+            font-size: 1.05rem;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .back-link {
+            color: #6e6e73;
+            font-size: 0.9rem;
+        }
+
+        .article-header {
+            padding: 88px 0 40px;
+        }
+
+        .article-kicker {
+            color: #86868b;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: clamp(2.25rem, 6.6vw, 4.35rem);
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+        }
+
+        .lede {
+            color: #424245;
+            font-size: 1.25rem;
+            line-height: 1.65;
+            max-width: 760px;
+        }
+
+        .article {
+            padding-bottom: 88px;
+        }
+
+        .article h2 {
+            font-size: 1.55rem;
+            line-height: 1.25;
+            letter-spacing: -0.01em;
+            margin: 2.75rem 0 0.8rem;
+        }
+
+        .article p {
+            color: #424245;
+            font-size: 1.05rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .article ul {
+            color: #424245;
+            font-size: 1.05rem;
+            margin: 0 0 1.5rem 1.25rem;
+        }
+
+        .article li {
+            margin-bottom: 0.55rem;
+        }
+
+        .article strong {
+            color: #1d1d1f;
+        }
+
+        .article code {
+            background: #f5f5f7;
+            border: 1px solid #e8e8ed;
+            border-radius: 5px;
+            color: #1d1d1f;
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+            font-size: 0.92em;
+            padding: 0.08rem 0.3rem;
+        }
+
+        .callout {
+            border-left: 4px solid #1d1d1f;
+            background: #f5f5f7;
+            padding: 1.25rem 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .callout p {
+            margin-bottom: 0;
+            color: #1d1d1f;
+        }
+
+        .article-footer {
+            border-top: 1px solid #d2d2d7;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+        }
+
+        @media (max-width: 640px) {
+            .nav-content {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 0.4rem;
+            }
+
+            .article-header {
+                padding-top: 56px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="../index.html" class="logo">Sergio Gallegos</a>
+            <a href="../index.html#writing" class="back-link">Back to writing</a>
+        </div>
+    </nav>
+
+    <main>
+        <header class="article-header">
+            <div class="container">
+                <div class="article-kicker">Industrial Software</div>
+                <h1>Rethinking the SCADA Stack: Rust Runtime, Python 3.11+ Scripting</h1>
+                <p class="lede">
+                    The next generation of small and mid-size industrial systems should not have to
+                    choose between stable plant-floor software and access to modern computation.
+                    OpenWebHMI is my attempt to design that stack from first principles.
+                </p>
+            </div>
+        </header>
+
+        <article class="article">
+            <div class="container">
+                <p>
+                    The current state of industrial HMI scripting is more complicated than the usual
+                    vendor-bashing version of the story. Ignition, one of the most important modern
+                    SCADA/HMI platforms, still centers its built-in scripting story on
+                    <a href="https://support.inductiveautomation.com/hc/en-us/articles/360056397252-Python-In-Ignition" target="_blank" rel="noopener noreferrer">Jython 2.7</a>:
+                    Python 2.7 semantics on the JVM. Inductive Automation supports that runtime and
+                    maintains its own Jython codebase, but the upstream Python project officially
+                    <a href="https://www.python.org/doc/sunset-python-2/" target="_blank" rel="noopener noreferrer">sunset Python 2 on January 1, 2020</a>.
+                    FactoryTalk Optix moves in a different direction with
+                    <a href="https://www.rockwellautomation.com/en-us/products/software/factorytalk/optix.html" target="_blank" rel="noopener noreferrer">C# scripting and .NET integration</a>,
+                    which is a real improvement for many teams, but it still points the platform
+                    toward a specific vendor stack.
+                </p>
+
+                <p>
+                    That is the state of the art for many small and mid-size factories in 2026:
+                    mature platforms, serious engineering, and scripting environments that do not
+                    line up cleanly with the Python ecosystem where most modern data, ML, and AI work
+                    is happening.
+                </p>
+
+                <h2>Why this matters</h2>
+                <p>
+                    The issue is not whether you can write useful scripts in Jython 2.7. You can.
+                    Many plants do it every day. The issue is what becomes hard or awkward when the
+                    scripting layer is separated from modern CPython. Inductive Automation's own
+                    documentation notes the core tradeoff: Jython can access Java libraries, but C
+                    libraries are not accessible in the same way they are from CPython.
+                </p>
+
+                <ul>
+                    <li>No normal path to production-grade <code>numpy</code>, <code>pandas</code>, <code>scikit-learn</code>, <code>torch</code>, or modern LLM SDKs inside the platform scripting runtime.</li>
+                    <li>No Python 3 language features such as <code>asyncio</code>, f-strings, useful type hints, or <code>dataclasses</code>.</li>
+                    <li>No standard CPython packaging story for libraries with native extensions.</li>
+                    <li>No simple way to treat ML and data-science code as first-class platform code instead of an external integration.</li>
+                </ul>
+
+                <p>
+                    The result is predictable. Predictive maintenance, anomaly detection, ML-driven
+                    quality inspection, and AI-assisted operator interfaces often end up outside the
+                    HMI as separate projects. Even Inductive Automation's own
+                    <a href="https://inductiveautomation.com/resources/icc/2022/using-ignition-with-machine-learning-libraries" target="_blank" rel="noopener noreferrer">machine-learning material</a>
+                    discusses Python 3 environments running alongside Ignition for TensorFlow,
+                    PyTorch, scikit-learn, and similar tools. That can be the right architecture for
+                    some systems, but it should not be the only path.
+                </p>
+
+                <h2>Why the industry got stuck here</h2>
+                <p>
+                    The fair version of the argument matters. Jython made sense. The JVM was a strong
+                    deployment target, especially when industrial platforms needed cross-platform
+                    behavior, long-lived runtimes, and access to Java libraries. Embedding CPython
+                    directly was not a clean choice for every product architecture.
+                </p>
+
+                <p>
+                    Industrial customers also value stability over novelty. In a plant, "this
+                    scripting layer has not changed much in years" can sound like a feature, not a
+                    defect. A platform with deployed customer scripts going back many years cannot
+                    casually replace its scripting engine without breaking real production systems.
+                    Inductive Automation has also been public that Python 3 migration is a real
+                    engineering problem, not a matter of simply flipping a version number.
+                </p>
+
+                <p>
+                    That is why I do not think the right conclusion is "the incumbents are lazy." The
+                    better conclusion is that platforms designed around older runtime assumptions
+                    eventually accumulate architectural debt. At some point, that debt becomes visible
+                    to customers who want modern computation inside industrial software.
+                </p>
+
+                <h2>What changed</h2>
+                <p>
+                    Several things are different now. First, CPython does not have to be embedded
+                    directly into the runtime process. A platform can run Python as a worker process,
+                    communicate over IPC, supervise execution, control resources, and isolate failures.
+                    That architecture is easier to reason about than forcing the entire HMI runtime to
+                    become a Python host.
+                </p>
+
+                <p>
+                    Second, Rust has matured into a serious choice for long-lived industrial runtime
+                    software. It gives you memory safety without a garbage collector, strong async
+                    networking, a single-binary deployment story, and a good fit for protocol drivers
+                    where bytes, timing, and error boundaries matter.
+                </p>
+
+                <p>
+                    Third, the Python ML ecosystem is no longer optional infrastructure. If a modern
+                    industrial platform cannot run normal Python libraries without strange workarounds,
+                    that limitation is visible to engineers evaluating it. Python is where much of the
+                    practical work in ML, optimization, data analysis, and AI integration happens.
+                </p>
+
+                <p>
+                    Finally, AI-assisted development has changed what a small team can build. That
+                    does not remove the need for engineering judgment, testing, or domain expertise.
+                    It does make open-source industrial software viable at scopes that would have
+                    looked unrealistic for one or two people a few years ago.
+                </p>
+
+                <h2>The OpenWebHMI architecture</h2>
+                <p>
+                    <a href="https://openwebhmi.com" target="_blank" rel="noopener noreferrer">OpenWebHMI</a>
+                    is built around a simple idea: keep the plant-floor runtime small, predictable,
+                    and boring, while making modern computation first-class.
+                </p>
+
+                <p>
+                    The gateway is written in Rust because it has to run for months, speak industrial
+                    protocols, poll tags, serve clients, and fail in ways that are observable rather
+                    than mysterious. A single static binary matters in small plants. Predictable
+                    memory behavior matters. A runtime without GC pauses matters. Industrial protocol
+                    work is often low-level systems work, and Rust is good at that category of problem.
+                </p>
+
+                <p>
+                    Scripting runs on CPython 3.11+ worker subprocesses. That choice is deliberate.
+                    It means Python libraries from PyPI work as Python libraries, including the ones
+                    with native extensions. It means <code>numpy</code>, <code>pandas</code>,
+                    <code>scikit-learn</code>, and modern ML tooling are not special integration
+                    projects. It also gives the platform a cleaner sandbox boundary: supervise the
+                    worker, communicate over IPC, and keep the core gateway insulated from script
+                    failures.
+                </p>
+
+                <p>
+                    The designer and runtime use React and TypeScript because industrial UI is already
+                    moving toward web technology. Ignition Perspective and FactoryTalk Optix both
+                    point in that direction. Tauri gives the designer a path to cross-platform desktop
+                    packaging without splitting the UI stack from the web runtime.
+                </p>
+
+                <p>
+                    The MIT license is also part of the architecture. Licensing economics are one of
+                    the reasons small and mid-size industrial systems get stuck with either expensive
+                    enterprise platforms or fragile custom tools. A free-as-in-freedom SCADA/HMI option
+                    fills a real gap if it is scoped honestly.
+                </p>
+
+                <div class="callout">
+                    <p>
+                        The point is not "Rust instead of everything" or "Python everywhere." The
+                        point is a clean separation: Rust for the runtime boundary, CPython for
+                        computation, and web technology for operator and engineering interfaces.
+                    </p>
+                </div>
+
+                <h2>What this is, and what it is not</h2>
+                <p>
+                    OpenWebHMI is not trying to replace every Ignition or FactoryTalk Optix
+                    installation. The first target is deliberately smaller: one gateway, up to about
+                    10,000 tags, up to about 50 clients, and a limited driver set. The goal is to be
+                    useful for small and mid-size industrial systems before pretending to be an
+                    enterprise platform.
+                </p>
+
+                <p>
+                    It is not hard-real-time control. It is not SIL-rated safety software. It is not
+                    an MES. It is not a universal replacement for a platform that already runs a large
+                    site with years of modules and integrations. That scope is not a weakness. It is
+                    the only way to make the project technically honest.
+                </p>
+
+                <h2>The open questions</h2>
+                <p>
+                    The approach still has to prove itself. The biggest question is long-term
+                    operational behavior under real plant conditions. I have hardware validation on
+                    the EtherNet/IP driver, but the full OpenWebHMI platform still has to earn that
+                    same level of evidence.
+                </p>
+
+                <p>
+                    Driver coverage is another open question. A focused set of protocols can be enough
+                    to make the platform useful, but it will not be universal. Community is the third
+                    question. An open-source SCADA/HMI platform has to become more than one person's
+                    project if it is going to outlive its founder.
+                </p>
+
+                <h2>The argument</h2>
+                <p>
+                    My argument is not that existing SCADA platforms are bad. They solved real
+                    problems and continue to run real factories. My argument is that the next layer of
+                    industrial software needs a different foundation: modern systems programming for
+                    the runtime, modern Python for computation, and an open licensing model for teams
+                    that cannot justify enterprise economics.
+                </p>
+
+                <p>
+                    That is what OpenWebHMI is trying to explore. Not a marketing wrapper around the
+                    same old stack, but a smaller, sharper architecture for the industrial systems
+                    that need modern software without losing contact with the machines.
+                </p>
+
+                <div class="article-footer">
+                    <p>
+                        Project: <a href="https://openwebhmi.com" target="_blank" rel="noopener noreferrer">OpenWebHMI</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+    </main>
+</body>
+</html>
