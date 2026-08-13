@@ -157,6 +157,7 @@ Each challenge has a Python and Blocks starter available from the challenge cont
 - Phones use a single-column layout.
 - Manual controls are located over the robot viewport instead of consuming editor space.
 - Buttons and tabs use touch-friendly heights on small screens.
+- Portrait phones keep the large TCP and challenge cards collapsed by default, with exclusive Position and Challenge toggles so the robot remains visible.
 - Tool controls wrap to avoid horizontal overflow.
 - Blockly, console, editor, challenge selector, and room overlays adapt to narrow viewports.
 - Interactions do not depend on hover.

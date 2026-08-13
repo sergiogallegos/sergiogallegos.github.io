@@ -14,6 +14,7 @@ import { PythonRunner } from './python-runner.js';
 import { validateRobotCommands } from './robot-command-validator.js';
 
 const viewport = document.querySelector('#viewport');
+const viewportPanel = document.querySelector('.viewport-panel');
 const scene = new THREE.Scene();
 scene.fog = new THREE.FogExp2(0xf5f5f7, 0.045);
 
@@ -180,6 +181,22 @@ let penDown = false;
 let trailPoints = [];
 let drawSuccessLocked = false;
 const challengeSelect = document.querySelector('#challenge-select');
+
+function setMobilePanel(panel = null) {
+  const positionOpen = panel === 'position';
+  const challengeOpen = panel === 'challenge';
+  viewportPanel.classList.toggle('mobile-position-open', positionOpen);
+  viewportPanel.classList.toggle('mobile-challenge-open', challengeOpen);
+  document.querySelector('#mobile-position-toggle').setAttribute('aria-pressed', String(positionOpen));
+  document.querySelector('#mobile-challenge-toggle').setAttribute('aria-pressed', String(challengeOpen));
+}
+
+document.querySelector('#mobile-position-toggle').addEventListener('click', (event) => {
+  setMobilePanel(event.currentTarget.getAttribute('aria-pressed') === 'true' ? null : 'position');
+});
+document.querySelector('#mobile-challenge-toggle').addEventListener('click', (event) => {
+  setMobilePanel(event.currentTarget.getAttribute('aria-pressed') === 'true' ? null : 'challenge');
+});
 const poseReadouts = {
   x: document.querySelector('#tcp-x'),
   y: document.querySelector('#tcp-y'),
@@ -657,6 +674,7 @@ function prepareChallenge(challenge) {
   resetPen();
   resetGripper();
   resetPickObjects();
+  setMobilePanel(null);
 }
 
 function activateWakeChallenge() {

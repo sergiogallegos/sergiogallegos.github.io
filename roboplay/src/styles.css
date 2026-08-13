@@ -51,6 +51,7 @@ button:focus-visible, textarea:focus-visible { outline: 2px solid var(--orange);
 #viewport { position: absolute; inset: 0; }
 #viewport canvas { display: block; width: 100%; height: 100%; }
 .viewport-toolbar { position: absolute; z-index: 2; left: 20px; right: 20px; top: 18px; display: flex; justify-content: space-between; pointer-events: none; }
+.mobile-hud-controls { display: none; }
 .status-pill, .camera-buttons { pointer-events: auto; background: rgba(255, 255, 255, .82); border: 1px solid #d2d2d7; box-shadow: 0 4px 20px rgba(0,0,0,.06); backdrop-filter: saturate(180%) blur(20px); }
 .status-pill { display: flex; align-items: center; gap: 9px; border-radius: 99px; padding: 8px 13px; color: #4d535e; font-size: .72rem; }
 #status-light { width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 12px var(--green); }
@@ -232,9 +233,15 @@ dialog code { font-family: 'DM Mono', monospace; color: #1d1d1f; }
   .viewport-panel { height: 48vh; min-height: 340px; }
   .viewport-toolbar { left: 12px; right: 12px; top: 12px; }
   .camera-buttons button { padding: 6px 7px; }
-  .tcp-card { left: 12px; top: 58px; width: 258px; }
-  .viewport-challenge-tools { left: 12px; right: auto; top: 181px; width: 258px; }
-  .viewport-challenge-summary { left: 12px; top: 181px; width: 258px; }
+  .mobile-hud-controls { position: absolute; z-index: 5; left: 12px; top: 58px; display: flex; gap: 6px; }
+  .mobile-hud-controls button { min-height: 36px; border: 1px solid #d2d2d7; border-radius: 99px; padding: 0 12px; background: rgba(255,255,255,.9); color: #6e6e73; box-shadow: 0 3px 12px rgba(0,0,0,.06); backdrop-filter: blur(16px); font-size: .59rem; font-weight: 700; }
+  .mobile-hud-controls button[aria-pressed='true'] { border-color: #86868b; background: #1d1d1f; color: #fff; }
+  .tcp-card { display: none; left: 12px; top: 102px; width: 258px; }
+  .viewport-panel.mobile-position-open .tcp-card { display: block; }
+  .viewport-challenge-tools { display: none; left: 12px; right: auto; top: 102px; width: 258px; }
+  .viewport-challenge-summary { display: none; left: 12px; top: 102px; width: 258px; }
+  .viewport-panel.mobile-challenge-open .viewport-challenge-tools:not([hidden]),
+  .viewport-panel.mobile-challenge-open .viewport-challenge-summary:not([hidden]) { display: block; }
   .challenge-launcher { left: 10px; right: 10px; bottom: 244px; grid-template-columns: auto minmax(0, 1fr) auto; }
   .challenge-launcher select, .challenge-launcher button { min-height: 40px; }
   .viewport-hint { display: none; }
