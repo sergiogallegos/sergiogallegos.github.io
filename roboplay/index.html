@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Learn robotics by programming a six-axis robot arm." />
+    <title>RoboPlay — Robot Playground</title>
+    <style>
+      html, body { margin: 0; min-height: 100%; background: #fff; }
+      body:not(.app-ready) #app { visibility: hidden; opacity: 0; }
+      #app { transition: opacity .22s ease; }
+      .app-loader {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: grid;
+        place-items: center;
+        background: #fff;
+        color: #1d1d1f;
+        font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', 'Segoe UI', sans-serif;
+        transition: opacity .22s ease, visibility .22s ease;
+      }
+      .app-loader-content { display: grid; justify-items: center; gap: 14px; }
+      .app-loader-mark {
+        display: grid;
+        place-items: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        background: #1d1d1f;
+        color: #fff;
+        font-size: 1.15rem;
+        font-weight: 700;
+      }
+      .app-loader-name { font-size: .95rem; font-weight: 600; letter-spacing: -.01em; }
+      .app-loader-status { color: #86868b; font-size: .72rem; }
+      .app-loader-line { width: 112px; height: 3px; overflow: hidden; border-radius: 3px; background: #e8e8ed; }
+      .app-loader-line::after {
+        content: '';
+        display: block;
+        width: 42%;
+        height: 100%;
+        border-radius: inherit;
+        background: #1d1d1f;
+        animation: loader-slide 1s ease-in-out infinite;
+      }
+      body.app-ready .app-loader { opacity: 0; visibility: hidden; pointer-events: none; }
+      body.app-ready #app { visibility: visible; opacity: 1; }
+      @keyframes loader-slide { from { transform: translateX(-115%); } to { transform: translateX(275%); } }
+      @media (prefers-reduced-motion: reduce) {
+        .app-loader-line::after { animation: none; width: 100%; }
+        #app, .app-loader { transition: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app-loader" class="app-loader" role="status" aria-live="polite">
+      <div class="app-loader-content">
+        <span class="app-loader-mark" aria-hidden="true">R</span>
+        <span class="app-loader-name">RoboPlay</span>
+        <span id="app-loader-status" class="app-loader-status">Preparing the robot lab…</span>
+        <span class="app-loader-line" aria-hidden="true"></span>
+      </div>
+    </div>
+    <main id="app">
+      <header class="topbar">
+        <a class="brand" href="../#home" aria-label="Back to Sergio Gallegos homepage">
+          <span>Sergio Gallegos</span>
+        </a>
+        <div class="product-brand" aria-label="RoboPlay, current page">
+          <span class="brand-mark" aria-hidden="true">R</span>
+          <span>RoboPlay</span>
+        </div>
+        <div class="topbar-actions">
+          <nav class="site-nav" aria-label="Portfolio navigation">
+            <a href="../#about">About</a>
+            <a href="../#skills">Skills</a>
+            <a href="../#projects">Projects</a>
+            <a href="../#writing">Writing</a>
+            <a href="../#social">Connect</a>
+          </nav>
+          <button id="help-button" class="icon-button" type="button" aria-label="Show quick help">?</button>
+        </div>
+      </header>
+
+      <section class="workspace" aria-label="Robot playground">
+        <div class="viewport-panel">
+          <div class="viewport-toolbar">
+            <div class="status-pill"><span id="status-light"></span><span id="robot-status">Ready</span></div>
+            <div class="camera-buttons" aria-label="Camera views">
+              <button type="button" data-camera="front">Front</button>
+              <button type="button" data-camera="iso" class="active">Iso</button>
+              <button type="button" data-camera="top">Top</button>
+              <button id="axes-toggle" type="button" aria-pressed="false">Axes</button>
+            </div>
+          </div>
+          <div class="tcp-card" aria-label="Live tool center point pose">
+            <div class="tcp-heading">
+              <div><span class="eyebrow">LIVE POSITION</span><strong>Tool center point</strong></div>
+              <button id="copy-pose" type="button">Copy pose</button>
+            </div>
+            <div class="tcp-values">
+              <span><small>X</small><b id="tcp-x">0.0</b><em>mm</em></span>
+              <span><small>Y</small><b id="tcp-y">0.0</b><em>mm</em></span>
+              <span><small>Z</small><b id="tcp-z">0.0</b><em>mm</em></span>
+            </div>
+            <div class="tcp-orientation">
+              <span>R <b id="tcp-roll">0.0°</b></span>
+              <span>P <b id="tcp-pitch">0.0°</b></span>
+              <span>Y <b id="tcp-yaw">0.0°</b></span>
+            </div>
+          </div>
+          <div id="touch-challenge-tools" class="viewport-challenge-tools" aria-label="Target challenge controls" hidden>
+            <div class="viewport-challenge-heading">
+              <span><small>Target distance</small><strong id="target-distance">— mm</strong></span>
+              <button id="new-target-button" class="new-target-button" type="button">New target</button>
+            </div>
+            <div class="viewport-challenge-actions">
+              <button id="hint-button" type="button">Show hint</button>
+              <button id="starter-code-button" type="button">Use starter program</button>
+            </div>
+            <p id="challenge-hint" class="viewport-challenge-hint" hidden></p>
+          </div>
+          <div id="pick-challenge-tools" class="viewport-challenge-tools pick-challenge-tools" aria-label="Pick and place challenge controls" hidden>
+            <div class="viewport-challenge-heading">
+              <span><small>CHALLENGE 03</small><strong>Pick and place</strong></span>
+              <span id="cube-status" class="cube-status">Cube ready</span>
+            </div>
+            <p>Close the gripper at the blue cube, move it to the green ring, then open it.</p>
+            <div class="viewport-challenge-actions">
+              <button id="reset-objects-button" type="button">Reset objects</button>
+              <button id="pick-starter-button" type="button">Use starter program</button>
+            </div>
+          </div>
+          <div id="draw-challenge-tools" class="viewport-challenge-tools draw-challenge-tools" aria-label="Draw a square challenge controls" hidden>
+            <div class="viewport-challenge-heading">
+              <span><small>CHALLENGE 04</small><strong>Draw a square</strong></span>
+              <span id="drawing-status" class="cube-status">0% covered</span>
+            </div>
+            <p>Trace the purple guide with the pen down and return to the starting corner.</p>
+            <div class="viewport-challenge-actions">
+              <button id="clear-drawing-button" type="button">Clear drawing</button>
+              <button id="draw-starter-button" type="button">Use starter program</button>
+            </div>
+          </div>
+          <section id="challenge-summary" class="challenge-card viewport-challenge-summary" aria-label="Current challenge">
+            <div class="challenge-heading">
+              <div><span id="challenge-label" class="eyebrow">CHALLENGE 01</span><h1 id="challenge-title">Wake up the robot</h1></div>
+              <span id="challenge-count" class="challenge-count">0 / 6</span>
+            </div>
+            <p id="challenge-description">Move every joint at least once. Use the controls or write a program.</p>
+            <div class="progress-track"><span id="challenge-progress"></span></div>
+          </section>
+          <div class="challenge-launcher" aria-label="Choose a challenge">
+            <label for="challenge-select">Challenge</label>
+            <select id="challenge-select">
+              <option value="wake">01 · Wake up</option>
+              <option value="touch">02 · Touch target</option>
+              <option value="pick">03 · Pick and place</option>
+              <option value="draw">04 · Draw a square</option>
+            </select>
+            <button id="load-challenge-starter" type="button">Load starter</button>
+          </div>
+          <div id="viewport" aria-label="Interactive 3D robot view"></div>
+          <div class="viewport-hint">Drag to orbit · Scroll to zoom</div>
+          <div class="robot-control-dock" aria-label="Manual robot controls">
+            <div class="dock-header">
+              <div class="dock-tabs" role="tablist" aria-label="Robot control mode">
+                <button id="jog-dock-tab" class="active" type="button" role="tab" aria-selected="true" aria-controls="jog-dock-panel">Joint jog</button>
+                <button id="cartesian-dock-tab" type="button" role="tab" aria-selected="false" aria-controls="cartesian-dock-panel">Cartesian</button>
+              </div>
+              <div class="dock-actions">
+                <button id="gripper-button" class="dock-home gripper-button" type="button" aria-pressed="false">Close gripper</button>
+                <button id="pen-button" class="dock-home pen-button" type="button" aria-pressed="false">Pen down</button>
+                <button id="dock-home-button" class="dock-home" type="button">Return home</button>
+              </div>
+            </div>
+            <div id="jog-dock-panel" class="dock-panel" role="tabpanel" aria-labelledby="jog-dock-tab">
+              <div id="joint-controls" class="joint-controls"></div>
+            </div>
+            <div id="cartesian-dock-panel" class="dock-panel" role="tabpanel" aria-labelledby="cartesian-dock-tab" hidden>
+              <div class="cartesian-dock-content">
+                <div class="target-controls">
+                  <label><span>X <small>mm</small></span><input id="target-x" type="number" value="-300" step="10"></label>
+                  <label><span>Y <small>mm</small></span><input id="target-y" type="number" value="1870" step="10"></label>
+                  <label><span>Z <small>mm</small></span><input id="target-z" type="number" value="280" step="10"></label>
+                </div>
+                <button id="move-target-button" class="target-button" type="button"><span>◎</span> Move to target</button>
+                <button id="use-tcp-button" class="dock-secondary" type="button">Use current TCP</button>
+              </div>
+              <p class="target-help">Position-only IK chooses a comfortable wrist orientation automatically.</p>
+            </div>
+          </div>
+          <div id="success-card" class="success-card" role="status" hidden>
+            <span class="success-icon">✓</span>
+            <div><strong id="success-title">Robot awake!</strong><span id="success-message">You moved all six joints.</span></div>
+          </div>
+        </div>
+
+        <aside class="control-panel">
+          <section class="code-section">
+            <div class="section-heading">
+              <div><span class="eyebrow">PROGRAM</span><h2>Build your program</h2></div>
+              <span id="save-status" class="save-status">Saved locally</span>
+            </div>
+            <div class="editor-tabs" role="tablist" aria-label="Programming mode">
+              <button id="python-tab" class="active" type="button" role="tab" aria-selected="true" aria-controls="python-editor-panel">Python</button>
+              <button id="blocks-tab" type="button" role="tab" aria-selected="false" aria-controls="blocks-editor-panel">Blocks</button>
+            </div>
+            <div id="python-editor-panel" role="tabpanel" aria-labelledby="python-tab">
+              <div class="program-toolbar">
+                <button id="new-program-button" type="button">New</button>
+                <button id="open-program-button" type="button">Open</button>
+                <button id="save-program-button" type="button">Save .py</button>
+                <select id="starter-program-select" aria-label="Choose a starter program">
+                  <option value="">Starter programs…</option>
+                </select>
+                <input id="program-file-input" type="file" accept=".py,text/x-python,text/plain" hidden>
+              </div>
+              <div id="code-editor" class="editor-shell" aria-label="Python robot program"></div>
+            </div>
+            <div id="blocks-editor-panel" role="tabpanel" aria-labelledby="blocks-tab" hidden>
+              <div class="program-toolbar">
+                <button id="new-blocks-button" type="button">New</button>
+                <button id="open-blocks-button" type="button">Open</button>
+                <button id="save-blocks-button" type="button">Save blocks</button>
+                <select id="starter-blocks-select" aria-label="Choose a starter block program">
+                  <option value="">Starter blocks…</option>
+                </select>
+                <input id="blocks-file-input" type="file" accept=".json,.roboplay.json,application/json" hidden>
+              </div>
+              <div class="blockly-stage">
+                <div id="blockly-loading" class="blockly-loading" role="status">
+                  <span class="blockly-loading-spinner" aria-hidden="true"></span>
+                  <span>Loading visual blocks…</span>
+                </div>
+                <div id="blockly-workspace" class="blockly-workspace" aria-label="Visual block program"></div>
+              </div>
+              <details class="generated-code" open>
+                <summary>Show Python</summary>
+                <pre id="generated-python"><code># Add blocks to generate Python.</code></pre>
+              </details>
+            </div>
+            <div class="run-bar">
+              <button id="run-button" class="primary-button" type="button"><span>▶</span> Run program</button>
+              <button id="stop-button" class="secondary-button" type="button" disabled>Stop</button>
+              <button id="reset-button" class="secondary-button" type="button">Reset</button>
+            </div>
+          </section>
+
+          <section class="console-section">
+            <div class="section-heading"><h2>Robot console</h2><button id="clear-console" class="text-button" type="button">Clear</button></div>
+            <div id="console" class="console" role="log" aria-live="polite"></div>
+          </section>
+        </aside>
+      </section>
+    </main>
+
+    <dialog id="help-dialog">
+      <button id="close-help" class="dialog-close" type="button" aria-label="Close help">×</button>
+      <span class="eyebrow">QUICK START</span>
+      <h2>Make the robot move</h2>
+      <p>Write real Python, use <code>print()</code>, or control the robot, then press <strong>Run program</strong>.</p>
+      <pre><code>print("Hello, robot!")
+robot.move_joint(1, 45)
+robot.wait(1)
+robot.home()</code></pre>
+      <p>Available commands: <code>move_joint</code>, <code>move_joint_by</code>, <code>move_to</code>, <code>set_speed</code>, <code>wait</code>, <code>say</code>, and <code>home</code>.</p>
+    </dialog>
+
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
