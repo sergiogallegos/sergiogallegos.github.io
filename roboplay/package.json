@@ -4,9 +4,9 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "dev:site": "vite ..",
-    "build": "vite build --base=./",
+    "dev": "vite --open /index.source.html",
+    "dev:site": "vite .. --open /roboplay/index.source.html",
+    "build": "node scripts/build-deploy.mjs",
     "preview": "vite preview",
     "test": "node --test"
   },

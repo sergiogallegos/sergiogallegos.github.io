@@ -3,7 +3,9 @@ const appUrl = process.argv[3] || 'http://127.0.0.1:5173/roboplay/';
 const mode = process.argv[4] || 'python';
 
 const pages = await fetch(`${endpoint}/json`).then((response) => response.json());
-const socket = new WebSocket(pages[0].webSocketDebuggerUrl);
+const browserPage = pages.find((page) => page.type === 'page' && page.webSocketDebuggerUrl);
+if (!browserPage) throw new Error('Chrome did not expose a browser page for the smoke test.');
+const socket = new WebSocket(browserPage.webSocketDebuggerUrl);
 await new Promise((resolve, reject) => {
   socket.addEventListener('open', resolve, { once: true });
   socket.addEventListener('error', reject, { once: true });

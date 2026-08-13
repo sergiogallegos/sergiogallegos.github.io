@@ -24,7 +24,7 @@ RoboPlay is integrated into the portfolio as a first-party application rather th
 - RoboPlay uses the portfolio's light visual language, typography, navigation, spacing, and restrained color palette.
 - Portfolio navigation remains available from inside the simulator.
 - The app is a standalone shareable route while remaining part of the same static website.
-- Vite builds the app with relative asset paths, making it suitable for deployment under `/roboplay/` on GitHub Pages/custom-domain hosting.
+- Vite builds the app with relative asset paths and publishes the production entry and hashed assets directly under `/roboplay/` for branch-based GitHub Pages hosting.
 - A loading screen prevents raw or partially styled HTML from flashing during startup.
 
 The current integration is committed as source in this repository. No backend service or database needs to be deployed.
@@ -251,10 +251,10 @@ npm install
 npm run dev:site
 ```
 
-The integrated portfolio and RoboPlay route are then served by Vite. The RoboPlay development URL is normally:
+The integrated portfolio is served by Vite. The editable RoboPlay source entry is:
 
 ```text
-http://127.0.0.1:5173/roboplay/
+http://127.0.0.1:5173/roboplay/index.source.html
 ```
 
 Verification commands:
@@ -263,6 +263,8 @@ Verification commands:
 npm test
 npm run build
 ```
+
+`npm run build` performs the Vite production build and publishes the generated `index.html` and `assets/` into `roboplay/`. Those generated production files are intentionally committed because this repository's GitHub Pages site deploys directly from the `main` branch.
 
 ## 10. Deployment Notes
 
