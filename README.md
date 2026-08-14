@@ -35,6 +35,20 @@ Bridging traditional industrial automation with cutting-edge AI and machine lear
 
 ## 🚀 Featured Projects
 
+### [Canvas Whiteboard](https://sergiogallegos.net/whiteboard/)
+A lightweight, pressure-aware browser whiteboard for mouse, touch, and pen input. Includes pen, highlighter, eraser, colors, undo/redo, local autosave, a dot grid, and PNG export with no account or backend.
+
+**Technologies:** Canvas API, Pointer Events, JavaScript, Local Storage
+
+See [`whiteboard/PROJECT_STATUS.md`](whiteboard/PROJECT_STATUS.md) for architecture, design decisions, verification status, and roadmap.
+
+### [RoboPlay](https://sergiogallegos.net/roboplay/)
+An interactive six-axis robot playground for learning robotics and coding with real Python, forward and inverse kinematics, guided challenges, and a browser-based 3D simulator.
+
+**Technologies:** Three.js, Python, Pyodide, Blockly, Robotics
+
+See [`roboplay/PROJECT_STATUS.md`](roboplay/PROJECT_STATUS.md) for architecture, feature status, and deployment notes.
+
 ### [Rust Ethernet/IP](https://github.com/sergiogallegos/rust-ethernet-ip)
 Production-focused EtherNet/IP library for Allen-Bradley CompactLogix and ControlLogix PLCs, validated on real hardware (5069-L320ERMS3 fw35, 1756-L81ES fw37), published on crates.io and NuGet, with Rust/C#/Python wrappers. More than 5,000 crate downloads.
 

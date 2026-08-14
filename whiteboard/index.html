@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+  <meta name="theme-color" content="#f7f4ed">
+  <meta name="description" content="A lightweight, pressure-aware whiteboard for mouse, touch, and pen input.">
+  <title>Canvas — A lightweight whiteboard</title>
+  <link rel="icon" href="../favicon.ico">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#drawing-canvas">Skip to drawing board</a>
+
+  <main class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="../#home" aria-label="Back to Sergio Gallegos homepage">
+        <span>Sergio Gallegos</span>
+      </a>
+      <div class="product-brand" aria-label="Canvas Whiteboard, current page">
+        <span class="brand-mark" aria-hidden="true">C</span>
+        <span>Canvas</span>
+      </div>
+      <div class="top-actions">
+        <nav class="site-nav" aria-label="Portfolio navigation">
+          <a href="../#about">About</a>
+          <a href="../#skills">Skills</a>
+          <a href="../#projects">Projects</a>
+          <a href="../#writing">Writing</a>
+          <a href="../#social">Connect</a>
+        </nav>
+        <button class="export-button" id="export-button" type="button">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 19h14"/></svg>
+          <span>Export PNG</span>
+        </button>
+      </div>
+    </header>
+
+    <section class="workspace" aria-label="Whiteboard workspace">
+      <aside class="toolbar" aria-label="Drawing tools">
+        <div class="tool-group" role="group" aria-label="Tools">
+          <button class="tool-button active" data-tool="pen" type="button" aria-label="Pen" aria-pressed="true" title="Pen (P)">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 20l4.5-1.5L19 8a2.1 2.1 0 00-3-3L5.5 15.5 4 20zM14.5 6.5l3 3"/></svg>
+            <span>Pen</span>
+          </button>
+          <button class="tool-button" data-tool="highlighter" type="button" aria-label="Highlighter" aria-pressed="false" title="Highlighter (H)">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6 15l8-8 4 4-8 8H6v-4zM4 21h10"/></svg>
+            <span>Mark</span>
+          </button>
+          <button class="tool-button" data-tool="eraser" type="button" aria-label="Eraser" aria-pressed="false" title="Eraser (E)">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 18l-3-3L14 5a2.1 2.1 0 013 0l2 2a2.1 2.1 0 010 3l-8 8H7zM12 18h8"/></svg>
+            <span>Erase</span>
+          </button>
+        </div>
+
+        <div class="toolbar-divider"></div>
+
+        <div class="color-controls" id="color-controls">
+          <span class="control-label">Color</span>
+          <div class="swatches" role="radiogroup" aria-label="Stroke color">
+            <button class="swatch selected" data-color="#1d1d1f" type="button" role="radio" aria-label="Black" aria-checked="true" style="--swatch: #1d1d1f"></button>
+            <button class="swatch" data-color="#3566d6" type="button" role="radio" aria-label="Blue" aria-checked="false" style="--swatch: #3566d6"></button>
+            <button class="swatch" data-color="#df5b57" type="button" role="radio" aria-label="Coral" aria-checked="false" style="--swatch: #df5b57"></button>
+            <button class="swatch" data-color="#e4a937" type="button" role="radio" aria-label="Golden yellow" aria-checked="false" style="--swatch: #e4a937"></button>
+            <button class="swatch" data-color="#2d9b74" type="button" role="radio" aria-label="Green" aria-checked="false" style="--swatch: #2d9b74"></button>
+            <label class="custom-color" title="Custom color">
+              <span class="visually-hidden">Custom color</span>
+              <input id="custom-color" type="color" value="#8b5cf6" aria-label="Choose a custom color">
+            </label>
+          </div>
+        </div>
+
+        <div class="size-control">
+          <label class="control-label" for="stroke-size">Size <output id="size-output" for="stroke-size">4</output></label>
+          <input id="stroke-size" type="range" min="2" max="24" value="4" step="1">
+        </div>
+
+        <div class="toolbar-divider"></div>
+
+        <div class="history-actions" role="group" aria-label="History">
+          <button class="icon-button" id="grid-button" type="button" aria-label="Toggle dot grid" aria-pressed="true" title="Toggle dot grid">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="6" cy="6" r="1"/><circle cx="12" cy="6" r="1"/><circle cx="18" cy="6" r="1"/><circle cx="6" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="18" cy="12" r="1"/><circle cx="6" cy="18" r="1"/><circle cx="12" cy="18" r="1"/><circle cx="18" cy="18" r="1"/></svg>
+          </button>
+          <button class="icon-button" id="undo-button" type="button" aria-label="Undo" title="Undo (⌘Z)" disabled>
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 7l-5 5 5 5M5 12h8a6 6 0 016 6"/></svg>
+          </button>
+          <button class="icon-button" id="redo-button" type="button" aria-label="Redo" title="Redo (⇧⌘Z)" disabled>
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M15 7l5 5-5 5m4-5h-8a6 6 0 00-6 6"/></svg>
+          </button>
+          <button class="icon-button danger" id="clear-button" type="button" aria-label="Clear board" title="Clear board" disabled>
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3m-9 0l1 13h10l1-13M10 11v5m4-5v5"/></svg>
+          </button>
+        </div>
+      </aside>
+
+      <div class="board-wrap" id="board-wrap">
+        <canvas id="drawing-canvas" tabindex="0" aria-label="Drawing canvas. Use a mouse, finger, or pen to draw."></canvas>
+        <div class="document-status" role="status" aria-live="polite">
+          <span class="status-dot"></span>
+          <span id="save-status">Saved locally</span>
+        </div>
+        <div class="empty-state" id="empty-state" aria-hidden="true">
+          <div class="gesture-mark">
+            <svg viewBox="0 0 100 62" aria-hidden="true"><path d="M5 46c17-33 20 11 36-15 13-21 12 26 28 7 12-15 18-3 26 7"/></svg>
+          </div>
+          <p>Start with a thought.</p>
+          <span>Draw with your mouse, finger, or pen.</span>
+        </div>
+        <div class="board-tip" id="board-tip">Your work stays on this device.</div>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="clear-dialog" aria-labelledby="clear-title">
+    <form method="dialog">
+      <div class="dialog-icon">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3m-9 0l1 13h10l1-13"/></svg>
+      </div>
+      <h2 id="clear-title">Clear the board?</h2>
+      <p>You can undo this action until you draw something new.</p>
+      <div class="dialog-actions">
+        <button class="dialog-secondary" value="cancel">Keep drawing</button>
+        <button class="dialog-danger" id="confirm-clear" value="clear">Clear board</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script type="module" src="src/app.js"></script>
+</body>
+</html>
