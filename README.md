@@ -35,6 +35,11 @@ Bridging traditional industrial automation with cutting-edge AI and machine lear
 
 ## 🚀 Featured Projects
 
+### [Arcade](https://sergiogallegos.net/games/)
+One responsive game playground containing Snake, Tetris, and Cosmic Drift, an asteroid-style space shooter. Every game supports keyboard and purpose-built touch controls and runs entirely in the browser.
+
+**Technologies:** Canvas API, JavaScript, Game Loops, Pointer Events
+
 ### [Canvas Whiteboard](https://sergiogallegos.net/whiteboard/)
 A lightweight, pressure-aware browser whiteboard for mouse, touch, and pen input. Includes pen, highlighter, eraser, colors, undo/redo, local autosave, a dot grid, and PNG export with no account or backend.
 

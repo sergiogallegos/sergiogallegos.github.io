@@ -1,0 +1,9 @@
+{
+  "name": "sergio-arcade",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "check": "node --check src/app.js"
+  }
+}

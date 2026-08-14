@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+  <meta name="theme-color" content="#f5f5f7">
+  <meta name="description" content="Three timeless arcade games, built for keyboard and touch.">
+  <title>Arcade — Sergio Gallegos</title>
+  <link rel="icon" href="../favicon.ico">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to games</a>
+  <main class="app-shell" id="main-content">
+    <header class="topbar">
+      <a class="brand" href="../#home" aria-label="Back to Sergio Gallegos homepage">Sergio Gallegos</a>
+      <div class="product-brand" aria-label="Arcade, current page">
+        <span class="brand-mark" aria-hidden="true">A</span>
+        <span>Arcade</span>
+      </div>
+      <nav class="site-nav" aria-label="Portfolio navigation">
+        <a href="../#about">About</a><a href="../#skills">Skills</a><a href="../#projects">Projects</a><a href="../#writing">Writing</a><a href="../#social">Connect</a>
+      </nav>
+      <a class="mobile-home" href="../#projects" aria-label="Back to projects">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+      </a>
+    </header>
+
+    <section class="library" id="library" aria-labelledby="library-title">
+      <div class="library-copy">
+        <span class="eyebrow">PICK UP &amp; PLAY</span>
+        <h1 id="library-title">Three classics.<br><span>One little arcade.</span></h1>
+        <p>No downloads, no accounts—just choose a game and play with a keyboard or your phone.</p>
+      </div>
+      <div class="game-grid">
+        <button class="game-card snake-card" type="button" data-game="snake" aria-label="Play Snake">
+          <span class="card-art" aria-hidden="true"><span class="snake-pixel s1"></span><span class="snake-pixel s2"></span><span class="snake-pixel s3"></span><span class="snake-pixel s4"></span><span class="snake-food"></span></span>
+          <span class="card-meta"><span><small>01 · CLASSIC</small><strong>Snake</strong><em>Eat. Grow. Don’t crash.</em></span><span class="play-icon">→</span></span>
+        </button>
+        <button class="game-card tetris-card" type="button" data-game="tetris" aria-label="Play Tetris">
+          <span class="card-art blocks-art" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+          <span class="card-meta"><span><small>02 · PUZZLE</small><strong>Tetris</strong><em>Stack clean. Clear lines.</em></span><span class="play-icon">→</span></span>
+        </button>
+        <button class="game-card space-card" type="button" data-game="asteroids" aria-label="Play Cosmic Drift">
+          <span class="card-art space-art" aria-hidden="true"><span class="planet p1"></span><span class="planet p2"></span><span class="ship-shape"></span><span class="laser"></span><span class="star x1"></span><span class="star x2"></span><span class="star x3"></span></span>
+          <span class="card-meta"><span><small>03 · ACTION</small><strong>Cosmic Drift</strong><em>Fly fast. Break rocks.</em></span><span class="play-icon">→</span></span>
+        </button>
+      </div>
+      <p class="library-note"><span></span> Built with Canvas API · Plays entirely in your browser</p>
+    </section>
+
+    <section class="player" id="player" hidden aria-label="Game player">
+      <div class="player-bar">
+        <button class="back-button" id="back-button" type="button"><span>←</span> All games</button>
+        <div class="game-identity"><span class="game-dot" id="game-dot"></span><strong id="game-title">Snake</strong></div>
+        <div class="player-actions">
+          <div class="score-box"><small>SCORE</small><strong id="score">0</strong></div>
+          <div class="score-box secondary-stat"><small id="stat-label">BEST</small><strong id="stat-value">0</strong></div>
+          <button class="round-button" id="pause-button" type="button" aria-label="Pause game" title="Pause">Ⅱ</button>
+          <button class="round-button" id="restart-button" type="button" aria-label="Restart game" title="Restart">↻</button>
+        </div>
+      </div>
+      <div class="play-area">
+        <div class="stage-shell">
+          <canvas id="game-canvas" width="720" height="540" tabindex="0" aria-label="Interactive game area"></canvas>
+          <div class="game-overlay" id="game-overlay">
+            <span class="overlay-kicker" id="overlay-kicker">READY?</span>
+            <h2 id="overlay-title">Snake</h2>
+            <p id="overlay-text">Use the arrow keys or swipe to move.</p>
+            <button id="overlay-button" type="button">Start game</button>
+          </div>
+        </div>
+        <aside class="game-guide">
+          <div><span class="eyebrow">HOW TO PLAY</span><h2 id="guide-title">Guide the snake</h2><p id="guide-text">Collect fruit to grow longer. Avoid the walls and your own tail.</p></div>
+          <div class="key-guide" id="key-guide"></div>
+          <p class="best-note" id="best-note">Your best score is saved on this device.</p>
+        </aside>
+      </div>
+      <div class="touch-controls" id="touch-controls" aria-label="Touch game controls"></div>
+    </section>
+  </main>
+  <script type="module" src="src/app.js"></script>
+</body>
+</html>
