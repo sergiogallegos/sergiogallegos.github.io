@@ -1,13 +1,52 @@
 :root {
-  color-scheme: light;
+  color-scheme: light dark;
   --ink: #1d1d1f;
+  --ink-contrast: #ffffff;
   --muted: #6e6e73;
   --surface: #ffffff;
   --chrome: #ffffff;
+  --workspace-bg: #f5f5f7;
   --line: #d2d2d7;
+  --divider: #e8e8ed;
   --accent: #0071e3;
   --danger: #d70015;
+  --danger-soft: #faeceb;
   --shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+  --nav-bg: rgba(255, 255, 255, 0.88);
+  --icon-btn-bg: rgba(255, 255, 255, 0.7);
+  --icon-btn-hover-bg: #f5f5f7;
+  --icon-btn-hover-border: #86868b;
+  --status-bg: rgba(255, 255, 255, 0.84);
+  --tip-border: rgba(210, 210, 215, 0.9);
+  --tip-bg: rgba(255, 255, 255, 0.84);
+  --swatch-ring: #d5d2cb;
+  --grid-dot: rgba(110, 110, 115, 0.22);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #f5f5f7;
+    --ink-contrast: #1d1d1f;
+    --muted: #a1a1a6;
+    --surface: #1c1c1e;
+    --chrome: #000000;
+    --workspace-bg: #000000;
+    --line: #38383a;
+    --divider: #2c2c2e;
+    --accent: #0a84ff;
+    --danger: #ff453a;
+    --danger-soft: rgba(255, 69, 58, 0.15);
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+    --nav-bg: rgba(0, 0, 0, 0.75);
+    --icon-btn-bg: rgba(255, 255, 255, 0.06);
+    --icon-btn-hover-bg: #2c2c2e;
+    --icon-btn-hover-border: #48484a;
+    --status-bg: rgba(28, 28, 30, 0.84);
+    --tip-border: rgba(56, 56, 58, 0.9);
+    --tip-bg: rgba(28, 28, 30, 0.84);
+    --swatch-ring: rgba(255, 255, 255, 0.2);
+    --grid-dot: rgba(255, 255, 255, 0.16);
+  }
 }
 
 * {
@@ -66,7 +105,7 @@ a:focus-visible {
   padding: 10px 14px;
   border-radius: 8px;
   background: var(--ink);
-  color: white;
+  color: var(--ink-contrast);
   text-decoration: none;
 }
 
@@ -88,7 +127,7 @@ a:focus-visible {
   gap: 18px;
   padding: 0 max(22px, env(safe-area-inset-right)) 0 max(22px, env(safe-area-inset-left));
   border-bottom: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.88);
+  background: var(--nav-bg);
   backdrop-filter: saturate(180%) blur(18px);
   -webkit-backdrop-filter: saturate(180%) blur(18px);
   position: relative;
@@ -126,7 +165,7 @@ a:focus-visible {
   place-items: center;
   border-radius: 9px;
   background: var(--ink);
-  color: white;
+  color: var(--ink-contrast);
   font-size: 0.95rem;
 }
 
@@ -138,15 +177,15 @@ a:focus-visible {
   flex: 0 0 auto;
   border: 1px solid var(--line);
   border-radius: 11px;
-  background: rgba(255, 255, 255, 0.7);
+  background: var(--icon-btn-bg);
   cursor: pointer;
   text-decoration: none;
   transition: background 160ms ease, border-color 160ms ease, transform 160ms ease;
 }
 
 .icon-button:hover:not(:disabled) {
-  border-color: #86868b;
-  background: #f5f5f7;
+  border-color: var(--icon-btn-hover-border);
+  background: var(--icon-btn-hover-bg);
 }
 
 svg {
@@ -170,7 +209,7 @@ svg {
   padding: 8px 13px;
   border: 1px solid var(--line);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.84);
+  background: var(--status-bg);
   color: var(--muted);
   box-shadow: var(--shadow);
   backdrop-filter: saturate(180%) blur(20px);
@@ -219,7 +258,7 @@ svg {
   border: 0;
   border-radius: 980px;
   background: var(--ink);
-  color: white;
+  color: var(--ink-contrast);
   font-size: 0.7rem;
   font-weight: 600;
   cursor: pointer;
@@ -228,7 +267,7 @@ svg {
 }
 
 .export-button:hover {
-  background: #424245;
+  opacity: 0.82;
 }
 
 .export-button svg {
@@ -242,7 +281,7 @@ svg {
   grid-template-columns: 112px minmax(0, 1fr);
   gap: 16px;
   padding: 14px;
-  background: #f5f5f7;
+  background: var(--workspace-bg);
 }
 
 .toolbar {
@@ -279,13 +318,13 @@ svg {
 }
 
 .tool-button:hover {
-  background: #f5f5f7;
+  background: var(--icon-btn-hover-bg);
   color: var(--ink);
 }
 
 .tool-button.active {
-  border-color: #d2d2d7;
-  background: #f5f5f7;
+  border-color: var(--line);
+  background: var(--icon-btn-hover-bg);
   color: var(--accent);
 }
 
@@ -297,7 +336,7 @@ svg {
 .toolbar-divider {
   height: 1px;
   flex: 0 0 auto;
-  background: #e8e8ed;
+  background: var(--divider);
 }
 
 .control-label {
@@ -332,7 +371,7 @@ svg {
   border: 2px solid var(--surface);
   border-radius: 50%;
   background: var(--swatch);
-  box-shadow: 0 0 0 1px #d5d2cb;
+  box-shadow: 0 0 0 1px var(--swatch-ring);
   cursor: pointer;
 }
 
@@ -387,12 +426,12 @@ svg {
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 14px;
-  background-color: #ffffff;
+  background-color: var(--surface);
   box-shadow: var(--shadow);
 }
 
 .board-wrap.show-grid {
-  background-image: radial-gradient(circle, rgba(110, 110, 115, 0.22) 1px, transparent 1.2px);
+  background-image: radial-gradient(circle, var(--grid-dot) 1px, transparent 1.2px);
   background-position: 0 0;
   background-size: 24px 24px;
 }
@@ -432,7 +471,7 @@ svg {
 .gesture-mark svg {
   width: 112px;
   height: 70px;
-  stroke: #86868b;
+  stroke: var(--muted);
   stroke-width: 3;
 }
 
@@ -455,9 +494,9 @@ svg {
   right: 14px;
   bottom: 12px;
   padding: 7px 10px;
-  border: 1px solid rgba(210, 210, 215, 0.9);
+  border: 1px solid var(--tip-border);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.84);
+  background: var(--tip-bg);
   color: var(--muted);
   font-size: 0.66rem;
   font-weight: 650;
@@ -497,7 +536,7 @@ dialog form {
   place-items: center;
   margin: 0 auto 15px;
   border-radius: 50%;
-  background: #faeceb;
+  background: var(--danger-soft);
   color: var(--danger);
 }
 
@@ -532,13 +571,14 @@ dialog p {
 
 .dialog-secondary {
   border: 1px solid var(--line);
-  background: white;
+  background: var(--surface);
+  color: var(--ink);
 }
 
 .dialog-danger {
   border: 1px solid var(--danger);
   background: var(--danger);
-  color: white;
+  color: #ffffff;
 }
 
 @media (max-width: 760px) {

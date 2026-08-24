@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
-  <meta name="theme-color" content="#f7f4ed">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f4ed">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000000">
   <meta name="description" content="A lightweight, pressure-aware whiteboard for mouse, touch, and pen input.">
   <title>Canvas — A lightweight whiteboard</title>
   <link rel="icon" href="../favicon.ico">
@@ -58,7 +59,7 @@
         <div class="color-controls" id="color-controls">
           <span class="control-label">Color</span>
           <div class="swatches" role="radiogroup" aria-label="Stroke color">
-            <button class="swatch selected" data-color="#1d1d1f" type="button" role="radio" aria-label="Black" aria-checked="true" style="--swatch: #1d1d1f"></button>
+            <button class="swatch selected" data-color="ink" type="button" role="radio" aria-label="Ink" aria-checked="true" style="--swatch: var(--ink)"></button>
             <button class="swatch" data-color="#3566d6" type="button" role="radio" aria-label="Blue" aria-checked="false" style="--swatch: #3566d6"></button>
             <button class="swatch" data-color="#df5b57" type="button" role="radio" aria-label="Coral" aria-checked="false" style="--swatch: #df5b57"></button>
             <button class="swatch" data-color="#e4a937" type="button" role="radio" aria-label="Golden yellow" aria-checked="false" style="--swatch: #e4a937"></button>

@@ -34,9 +34,17 @@ const confirmClear = document.querySelector("#confirm-clear");
 const gridButton = document.querySelector("#grid-button");
 const exportButton = document.querySelector("#export-button");
 
+const darkModeQuery = window.matchMedia("(prefers-color-scheme: dark)");
+
+function resolveColor(colorToken) {
+  if (colorToken !== "ink") return colorToken;
+  return getComputedStyle(document.documentElement).getPropertyValue("--ink").trim();
+}
+
 const state = createBoardState(deserializeBoard(localStorage.getItem(STORAGE_KEY)));
 let activeTool = "pen";
-let activeColor = "#1d1d1f";
+let activeColorSource = "ink";
+let activeColor = resolveColor(activeColorSource);
 let activeStroke = null;
 let saveTimer = null;
 let logicalWidth = 1;
@@ -183,8 +191,9 @@ function selectTool(tool) {
   colorControls.style.opacity = tool === "eraser" ? "0.42" : "1";
 }
 
-function selectColor(color, source = null) {
-  activeColor = color;
+function selectColor(colorToken, source = null) {
+  activeColorSource = colorToken;
+  activeColor = resolveColor(colorToken);
   for (const swatch of swatches) {
     const selected = source === swatch;
     swatch.classList.toggle("selected", selected);
@@ -240,11 +249,12 @@ function exportPng() {
   const inkContext = inkCanvas.getContext("2d");
   exportContext.scale(ratio, ratio);
   inkContext.scale(ratio, ratio);
-  exportContext.fillStyle = "#ffffff";
+  const rootStyle = getComputedStyle(document.documentElement);
+  exportContext.fillStyle = rootStyle.getPropertyValue("--surface").trim();
   exportContext.fillRect(0, 0, logicalWidth, logicalHeight);
 
   if (gridVisible) {
-    exportContext.fillStyle = "rgba(110, 110, 115, 0.22)";
+    exportContext.fillStyle = rootStyle.getPropertyValue("--grid-dot").trim();
     for (let x = 0; x < logicalWidth; x += 24) {
       for (let y = 0; y < logicalHeight; y += 24) {
         exportContext.beginPath();
@@ -325,6 +335,10 @@ document.addEventListener("keydown", (event) => {
     const tool = toolShortcuts[event.key.toLowerCase()];
     if (tool) selectTool(tool);
   }
+});
+
+darkModeQuery.addEventListener("change", () => {
+  if (activeColorSource === "ink") activeColor = resolveColor("ink");
 });
 
 new ResizeObserver(resizeCanvas).observe(boardWrap);
