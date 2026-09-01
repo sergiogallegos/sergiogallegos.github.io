@@ -60,7 +60,7 @@ Production-focused EtherNet/IP library for Allen-Bradley CompactLogix and Contro
 **Technologies:** Rust, EtherNet/IP, Allen-Bradley PLCs, C#, Python
 
 ### [OpenWebHMI](https://openwebhmi.com)
-Open-source, MIT-licensed alternative to Ignition and FactoryTalk Optix, written in Rust with Python 3.11+ scripting for in-platform machine learning. Built to displace Java/Jython industrial automation stacks with modern systems software and Python-native automation workflows.
+Open-source alternative to Ignition and FactoryTalk Optix, written in Rust with Python 3.11+ scripting for in-platform machine learning. Its product core is transitioning to AGPL-3.0-only, with shared protocol packages transitioning to MPL-2.0.
 
 **Technologies:** Rust, Python 3.11+, HMI, SCADA, Industrial ML
 
