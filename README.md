@@ -4,16 +4,16 @@
 
 ## 👨‍💼 About
 
-**Sergio Gallegos** - Electromechanical Engineer | Automation Controls Specialist | Software Engineering Graduate Student
+**Sergio Gallegos — Industrial Software Engineer**
 
-Bridging traditional industrial automation with cutting-edge AI and machine learning. From Mexico to the USA, combining mechanical, electrical, and software engineering to create intelligent automation solutions for the future.
+Backend, connectivity, and platform software for machines and manufacturing systems, grounded in 14+ years of controls and automation experience.
 
 ## 🎯 Professional Profile
 
-- **Education:** Electromechanical Engineering (Mexico) → Software Engineering Graduate Student (USA)
-- **Experience:** Automation Controls Engineer with machine builders and automation companies
-- **Specialization:** Industrial automation, machine learning, robotics, and vision systems
-- **Current Focus:** Deep learning, computer vision, and AI applications in industrial settings
+- **Education:** Electromechanical Engineering; currently pursuing an M.S. in Software Engineering, expected spring 2027
+- **Experience:** 14+ years in controls and automation, including PLCs, HMIs, robotics, and vision systems
+- **Current Focus:** Backend and product engineering for industrial platforms, machine connectivity, SCADA, and OT data
+- **Research Interests:** Computational science, numerical methods, optimization, and simulation
 
 ## 🛠️ Core Competencies
 
@@ -29,23 +29,19 @@ Bridging traditional industrial automation with cutting-edge AI and machine lear
 - Backend architecture
 - Databases and APIs
 
-### Machine Learning & AI
-- Computer vision
-- Machine learning for manufacturing systems
-
 ## 🚀 Featured Projects
 
-### [Arcade](https://sergiogallegos.net/games/)
-One responsive game playground containing Snake, Tetris, and Cosmic Drift, an asteroid-style space shooter. Every game supports keyboard and purpose-built touch controls and runs entirely in the browser.
+### [Rust Ethernet/IP](https://github.com/sergiogallegos/rust-ethernet-ip)
+Production-focused EtherNet/IP library for Allen-Bradley CompactLogix and ControlLogix PLCs, validated on real hardware (5069-L320ERMS3 fw35, 1756-L81ES fw37), published on crates.io and NuGet, with Rust/C#/Python wrappers. More than 5,000 crate downloads.
 
-**Technologies:** Canvas API, JavaScript, Game Loops, Pointer Events
+**Technologies:** Rust, EtherNet/IP, Allen-Bradley PLCs, C#, Python
 
-### [Canvas Whiteboard](https://sergiogallegos.net/whiteboard/)
-A lightweight, pressure-aware browser whiteboard for mouse, touch, and pen input. Includes pen, highlighter, eraser, colors, undo/redo, local autosave, a dot grid, and PNG export with no account or backend.
+### [OpenWebHMI](https://openwebhmi.com)
+Open-source HMI/SCADA platform in the prototype stage, exploring industrial monitoring and control with a Rust gateway runtime and Python scripting. Visit the project website to learn about its architecture and direction.
 
-**Technologies:** Canvas API, Pointer Events, JavaScript, Local Storage
+**Technologies:** Rust, Python, HMI, SCADA, Machine Connectivity
 
-See [`whiteboard/PROJECT_STATUS.md`](whiteboard/PROJECT_STATUS.md) for architecture, design decisions, verification status, and roadmap.
+## More Software & Experiments
 
 ### [RoboPlay](https://sergiogallegos.net/roboplay/)
 An interactive six-axis robot playground for learning robotics and coding with real Python, forward and inverse kinematics, guided challenges, and a browser-based 3D simulator.
@@ -54,15 +50,17 @@ An interactive six-axis robot playground for learning robotics and coding with r
 
 See [`roboplay/PROJECT_STATUS.md`](roboplay/PROJECT_STATUS.md) for architecture, feature status, and deployment notes.
 
-### [Rust Ethernet/IP](https://github.com/sergiogallegos/rust-ethernet-ip)
-Production-focused EtherNet/IP library for Allen-Bradley CompactLogix and ControlLogix PLCs, validated on real hardware (5069-L320ERMS3 fw35, 1756-L81ES fw37), published on crates.io and NuGet, with Rust/C#/Python wrappers. More than 5,000 crate downloads.
+### [Canvas Whiteboard](https://sergiogallegos.net/whiteboard/)
+A lightweight, pressure-aware browser whiteboard for mouse, touch, and pen input. Includes pen, highlighter, eraser, colors, undo/redo, local autosave, a dot grid, and PNG export with no account or backend.
 
-**Technologies:** Rust, EtherNet/IP, Allen-Bradley PLCs, C#, Python
+**Technologies:** Canvas API, Pointer Events, JavaScript, Local Storage
 
-### [OpenWebHMI](https://openwebhmi.com)
-Open-source alternative to Ignition and FactoryTalk Optix, written in Rust with Python 3.11+ scripting for in-platform machine learning. Its product core is transitioning to AGPL-3.0-only, with shared protocol packages transitioning to MPL-2.0.
+See [`whiteboard/PROJECT_STATUS.md`](whiteboard/PROJECT_STATUS.md) for architecture, design decisions, verification status, and roadmap.
 
-**Technologies:** Rust, Python 3.11+, HMI, SCADA, Industrial ML
+### [Arcade](https://sergiogallegos.net/games/)
+One responsive game playground containing Snake, Tetris, and Cosmic Drift, an asteroid-style space shooter. Every game supports keyboard and purpose-built touch controls and runs entirely in the browser.
+
+**Technologies:** Canvas API, JavaScript, Game Loops, Pointer Events
 
 ### [TensorCore](https://github.com/sergiogallegos/tensorcore)
 A high-performance C++ tensor library with Python bindings for machine learning. Educational implementation designed to understand the core mathematics and implementations behind popular ML libraries like NumPy, PyTorch, and TensorFlow.
@@ -79,16 +77,14 @@ A high-performance C++ tensor library with Python bindings for machine learning.
 
 - **LinkedIn:** [Professional Experience](https://www.linkedin.com/in/sergio-gallegos-24271a66/)
 - **GitHub:** [Code & Projects](https://github.com/sergiogallegos)
-- **Twitter/X:** [Updates](https://x.com/sergiogallegosh)
+- **X:** [Updates](https://x.com/sergiogallegosh)
 - **YouTube:** [Content](https://www.youtube.com/@imsergiog)
 - **Twitch:** [Live Streams](https://www.twitch.tv/imsergiog)
 
 ## 🎓 Academic Journey
 
 - **Undergraduate:** Electromechanical Engineering (Mexico)
-- **Graduate:** Master of Science in Software Engineering (USA)
-- **Current Studies:** Machine Learning & Deep Learning coursework
-- **Academic Performance:** Top of class with strong foundations in mathematics and physics
+- **Graduate:** Currently pursuing a Master of Science in Software Engineering (USA), with expected graduation in spring 2027
 
 ## 🌟 Key Interests
 
@@ -100,13 +96,9 @@ A high-performance C++ tensor library with Python bindings for machine learning.
 
 ## 📧 Contact
 
-Interested in collaborating? I'm always open to discussing new opportunities in:
-- Industrial automation consulting
-- Machine learning applications
-- Research collaborations
-- Software engineering projects
+Connect with me to talk about machine connectivity, industrial platforms, and open-source software.
 
-**Email:** [Contact via LinkedIn](https://www.linkedin.com/in/sergio-gallegos-24271a66/)
+**LinkedIn:** [Connect with me](https://www.linkedin.com/in/sergio-gallegos-24271a66/)
 
 ---
 

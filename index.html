@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sergio Gallegos</title>
-    <meta name="description" content="Sergio Gallegos — Senior Engineer and MSSwE student. Industrial automation, software engineering, and AI projects.">
+    <title>Sergio Gallegos | Industrial Software Engineer</title>
+    <meta name="description" content="Industrial software engineer building backend, connectivity, and platform software for machines and manufacturing systems. 14+ years in controls and automation.">
     <link rel="canonical" href="https://sergiogallegos.net/">
-    <meta property="og:title" content="Sergio Gallegos">
-    <meta property="og:description" content="Senior Engineer and MSSwE student. Industrial automation, software engineering, and AI projects.">
+    <meta property="og:title" content="Sergio Gallegos | Industrial Software Engineer">
+    <meta property="og:description" content="Backend, connectivity, and platform software for industrial systems, grounded in 14+ years of controls and automation experience.">
     <meta property="og:url" content="https://sergiogallegos.net/">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://sergiogallegos.net/me36.png">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Sergio Gallegos">
-    <meta name="twitter:description" content="Senior Engineer and MSSwE student. Industrial automation, software engineering, and AI projects.">
+    <meta name="twitter:title" content="Sergio Gallegos | Industrial Software Engineer">
+    <meta name="twitter:description" content="Backend, connectivity, and platform software for industrial systems, grounded in 14+ years of controls and automation experience.">
     <meta name="twitter:image" content="https://sergiogallegos.net/me36.png">
     <link rel="icon" href="favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
@@ -21,7 +21,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000000">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
     <style>
         :root {
             --c-bg: #ffffff;
@@ -72,6 +72,7 @@
 
         html {
             scroll-behavior: smooth;
+            scroll-padding-top: 80px;
         }
 
         body {
@@ -176,7 +177,8 @@
         }
 
         .hero-content h1 {
-            font-size: 3.5rem;
+            font-size: clamp(2.25rem, 5vw, 3.5rem);
+            line-height: 1.15;
             font-weight: 700;
             margin-bottom: 1rem;
             letter-spacing: -0.03em;
@@ -190,13 +192,22 @@
             margin-bottom: 1.5rem;
             color: var(--c-text-secondary);
             animation: fadeInUp 0.8s ease 0.15s both;
+            max-width: 740px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-name {
+            font-size: 1.1rem;
+            margin-bottom: 1.25rem;
+            color: var(--c-text-secondary);
         }
 
         .hero-content .description {
             font-size: 1.1rem;
             margin-bottom: 2.5rem;
-            color: var(--c-text-muted);
-            max-width: 620px;
+            color: var(--c-text-secondary);
+            max-width: 680px;
             margin-left: auto;
             margin-right: auto;
             line-height: 1.7;
@@ -263,6 +274,34 @@
             border-radius: 2px;
         }
 
+        .section-intro {
+            max-width: 700px;
+            margin: -1.5rem auto 2rem;
+            text-align: center;
+            color: var(--c-text-secondary);
+            font-size: 1.05rem;
+        }
+
+        .project-group-title {
+            margin-top: 3rem;
+            font-size: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .research-interests {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--c-border);
+            color: var(--c-text-secondary);
+            max-width: 740px;
+        }
+
+        .research-interests h3 {
+            color: var(--c-text);
+            margin-bottom: 0.75rem;
+            font-size: 1.25rem;
+        }
+
         /* About Section */
         .about-content {
             display: grid;
@@ -324,7 +363,7 @@
         /* Projects Section */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 1.5rem;
             margin-top: 2rem;
         }
@@ -354,7 +393,8 @@
             margin-bottom: 1.25rem;
         }
 
-        .project-card h3 {
+        .project-card h3,
+        .project-card h4 {
             font-size: 1.25rem;
             font-weight: 600;
             color: var(--c-text);
@@ -365,7 +405,7 @@
             color: var(--c-text-secondary);
             margin-bottom: 1.25rem;
             line-height: 1.6;
-            font-size: 0.95rem;
+            font-size: 1rem;
         }
 
         .tech-stack {
@@ -434,7 +474,7 @@
         /* Writing Section */
         .writing-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
             gap: 1.5rem;
             margin-top: 2rem;
         }
@@ -483,7 +523,7 @@
         /* Skills Section */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
             gap: 1.5rem;
             margin-top: 2rem;
         }
@@ -643,7 +683,7 @@
             }
 
             .hero-content h1 {
-                font-size: 2.5rem;
+                font-size: clamp(2rem, 7vw, 2.5rem);
             }
 
             .hero-content .subtitle {
@@ -688,8 +728,8 @@
                 <ul id="primary-navigation" class="nav-links">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
-                    <li><a href="#skills">Skills</a></li>
                     <li><a href="#projects">Projects</a></li>
+                    <li><a href="#skills">Skills</a></li>
                     <li><a href="#writing">Writing</a></li>
                     <li><a href="#social">Connect</a></li>
                 </ul>
@@ -700,10 +740,13 @@
     <section id="home" class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>Sergio Gallegos</h1>
-                <p class="subtitle">Engineer</p>
+                <p class="hero-name">Sergio Gallegos</p>
+                <h1>Industrial Software Engineer</h1>
+                <p class="subtitle">Backend, connectivity, and platform software for machines and manufacturing systems.</p>
                 <p class="description">
-                    I work at the intersection of industrial automation and software engineering, building systems that connect machines, computation, and modern software.
+                    I bring 14+ years in controls and automation to software for industrial systems.
+                    My focus is machine connectivity, SCADA, and OT data, using Rust, Python, and
+                    experience with the realities of the plant floor.
                 </p>
                 <p class="description hero-links" style="font-size: 0.95rem; margin-bottom: 2rem;">
                     <a href="https://www.linkedin.com/in/sergio-gallegos-24271a66/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
@@ -712,7 +755,7 @@
                     <span class="sep">/</span>
                     <a href="https://www.youtube.com/@imsergiog" target="_blank" rel="noopener noreferrer">YouTube</a>
                 </p>
-                <a href="#projects" class="cta-button">View My Work</a>
+                <a href="#projects" class="cta-button">Explore Industrial Projects</a>
             </div>
         </div>
     </section>
@@ -728,30 +771,24 @@
                 </div>
                 <div class="about-text">
                     <p>
-                        I’m a Senior Engineer designing and integrating PLCs, HMIs, robotics, and vision systems for fully automated industrial assembly machines.
+                        I build software for industrial systems, drawing on 14+ years in controls and
+                        automation. My work as a Senior Engineer includes designing and integrating
+                        PLCs, HMIs, robotics, and vision systems for automated assembly machines.
                     </p>
                     <p>
-                        My background is in Electromechanical Engineering, where I developed a strong foundation in mathematics and physics, including calculus, differential equations, thermodynamics, fluid mechanics, electromagnetism, and control systems. Throughout my career, I’ve applied this knowledge to build production-critical industrial systems.
+                        That background shapes how I approach software: connectivity has to work with
+                        real equipment, data has to be useful to operators and other systems, and
+                        reliability matters long after the first successful demo.
                     </p>
                     <p>
-                        Today, I’m expanding that foundation through software engineering. I’m currently pursuing a Master of Science in Software Engineering, focusing on software architecture, system design, and modern development practices.
+                        Today, I’m focused on backend and product engineering for industrial platforms.
+                        My projects include a Rust EtherNet/IP library for Allen-Bradley PLCs and
+                        OpenWebHMI, an open-source HMI/SCADA prototype built with Rust and Python scripting.
                     </p>
                     <p>
-                        My current focus is to bridge physical systems and computation by transforming mathematical models into software, simulations, and intelligent systems. I’m particularly interested in computational science, numerical methods, and how real-world processes can be modeled, simulated, and optimized through software.
-                    </p>
-                    <p>
-                        Technically, I work across:
-                    </p>
-                    <ul>
-                        <li>Industrial automation, including PLCs, robotics, and vision systems</li>
-                        <li>Backend and systems programming in Python, C++, and Rust</li>
-                        <li>Data and machine learning applied to manufacturing systems</li>
-                    </ul>
-                    <p>
-                        I’m currently reinforcing my mathematical foundations, starting with linear algebra, as part of my preparation for advanced studies in computational science.
-                    </p>
-                    <p>
-                        In parallel, I teach. My YouTube series, Inteligencia Artificial Desde Cero, is a Spanish-language course focused on Python, mathematics for machine learning, and deep learning fundamentals.
+                        My foundation is in Electromechanical Engineering. I’m currently pursuing a
+                        Master of Science in Software Engineering, with expected graduation in spring
+                        2027, focusing on architecture, system design, and modern development practices.
                     </p>
                     <p>
                         Outside of work, I’m a father of two, a soccer fan, and someone who enjoys building systems, from machines to software.
@@ -761,141 +798,20 @@
         </div>
     </section>
 
-    <section id="skills" class="section">
-        <div class="container">
-            <h2 class="section-title">Core Competencies</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <div class="skill-category-header">
-                        <i class="fas fa-cogs"></i>
-                        <h3>Industrial Automation</h3>
-                    </div>
-                    <div class="skill-tags">
-                        <span class="skill-tag">PLC, HMI &amp; SCADA Systems</span>
-                        <span class="skill-tag">Robotics &amp; Vision Integration</span>
-                        <span class="skill-tag">EtherNet/IP &amp; Industrial Networking</span>
-                        <span class="skill-tag">Traceability &amp; MES Integration</span>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <div class="skill-category-header">
-                        <i class="fas fa-code"></i>
-                        <h3>Software Engineering</h3>
-                    </div>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Rust Systems Programming</span>
-                        <span class="skill-tag">Python Automation &amp; Data Workflows</span>
-                        <span class="skill-tag">Backend Architecture</span>
-                        <span class="skill-tag">Databases &amp; APIs</span>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <div class="skill-category-header">
-                        <i class="fas fa-brain"></i>
-                        <h3>Machine Learning & AI</h3>
-                    </div>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Computer Vision</span>
-                        <span class="skill-tag">ML for Manufacturing Systems</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section id="projects" class="section">
         <div class="container">
             <h2 class="section-title">Featured Projects</h2>
+            <p class="section-intro">Software that connects industrial equipment to the applications built around it.</p>
             <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-icon">
-                        <i class="fas fa-gamepad"></i>
-                    </div>
-                    <h3>Arcade</h3>
-                    <p>
-                        One playful home for three browser classics: Snake, Tetris, and Cosmic
-                        Drift. Pick a game and jump in instantly from a computer or phone.
-                    </p>
-                    <ul class="project-proof">
-                        <li>Three complete games in one responsive, distraction-free playground.</li>
-                        <li>Keyboard, swipe, and purpose-built touch controls with no account or download.</li>
-                    </ul>
-                    <div class="tech-stack">
-                        <span class="tech-tag">Canvas API</span>
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">Game Loops</span>
-                        <span class="tech-tag">Touch Controls</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="games/" class="project-link">
-                            <i class="fas fa-play"></i> Enter the Arcade
-                        </a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-icon">
-                        <i class="fas fa-pen-ruler"></i>
-                    </div>
-                    <h3>Canvas Whiteboard</h3>
-                    <p>
-                        A calm, lightweight whiteboard for sketching ideas with a mouse, finger,
-                        or pressure-sensitive pen. Drawings save locally and export as PNG without
-                        requiring an account or backend.
-                    </p>
-                    <ul class="project-proof">
-                        <li>Pressure-aware pen input, highlighter, eraser, colors, and adjustable stroke sizes.</li>
-                        <li>Responsive iPad and desktop interface with undo, redo, grid, and local autosave.</li>
-                    </ul>
-                    <div class="tech-stack">
-                        <span class="tech-tag">Canvas API</span>
-                        <span class="tech-tag">Pointer Events</span>
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">Touch &amp; Pen</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="whiteboard/" class="project-link">
-                            <i class="fas fa-pen"></i> Open Whiteboard
-                        </a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-icon">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <h3>RoboPlay</h3>
-                    <p>
-                        An interactive six-axis robot playground for learning robotics and coding
-                        with real Python, live forward and inverse kinematics, guided challenges,
-                        and a browser-based 3D simulator.
-                    </p>
-                    <ul class="project-proof">
-                        <li>Runs entirely in the browser with no account, backend, or server-side data storage.</li>
-                        <li>Programs a kinematically modeled robot through joint and Cartesian commands.</li>
-                    </ul>
-                    <div class="tech-stack">
-                        <span class="tech-tag">Three.js</span>
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Pyodide</span>
-                        <span class="tech-tag">Robotics</span>
-                        <span class="tech-tag">Kinematics</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="roboplay/" class="project-link">
-                            <i class="fas fa-play"></i> Launch RoboPlay
-                        </a>
-                    </div>
-                </div>
                 <div class="project-card">
                     <div class="project-icon">
                         <i class="fab fa-rust"></i>
                     </div>
-                    <h3>Rust Ethernet/IP</h3>
+                    <h3>Rust EtherNet/IP</h3>
                     <p>
-                        Production-focused EtherNet/IP library for Allen-Bradley CompactLogix and
-                        ControlLogix PLCs, validated on real hardware, published on crates.io and
-                        NuGet, with Rust, C#, and Python wrappers.
+                        Connects backend applications to Allen-Bradley CompactLogix and ControlLogix
+                        PLCs through EtherNet/IP. Built in Rust, validated on real hardware, and
+                        available to Rust, C#, and Python developers.
                     </p>
                     <ul class="project-proof">
                         <li>Validated on real Allen-Bradley hardware: 5069-L320ERMS3 fw35 and 1756-L81ES fw37.</li>
@@ -923,18 +839,16 @@
                     </div>
                     <h3>OpenWebHMI</h3>
                     <p>
-                        OpenWebHMI is an open-source alternative to Ignition and FactoryTalk Optix,
-                        written in Rust with Python 3.11+ scripting for in-platform machine learning.
-                        Its product core is transitioning to AGPL-3.0-only, with shared protocol
-                        packages transitioning to MPL-2.0.
+                        An open-source HMI/SCADA platform in the prototype stage, exploring industrial
+                        monitoring and control with a Rust gateway runtime and Python scripting.
+                        Visit the project website to learn about its architecture and direction.
                     </p>
                     <div class="tech-stack">
                         <span class="tech-tag">Rust</span>
                         <span class="tech-tag">Python 3.11+</span>
                         <span class="tech-tag">HMI</span>
                         <span class="tech-tag">SCADA</span>
-                        <span class="tech-tag">AGPL/MPL Transition</span>
-                        <span class="tech-tag">Industrial ML</span>
+                        <span class="tech-tag">Machine Connectivity</span>
                     </div>
                     <div class="project-links">
                         <a href="https://openwebhmi.com" target="_blank" rel="noopener noreferrer" class="project-link">
@@ -942,26 +856,33 @@
                         </a>
                     </div>
                 </div>
+            </div>
+            <h3 class="project-group-title">More Software &amp; Experiments</h3>
+            <div class="projects-grid">
                 <div class="project-card">
                     <div class="project-icon">
-                        <i class="fab fa-youtube"></i>
+                        <i class="fas fa-robot"></i>
                     </div>
-                    <h3>Inteligencia Artificial Desde Cero</h3>
+                    <h4>RoboPlay</h4>
                     <p>
-                        A comprehensive video course series in Spanish teaching Artificial Intelligence from the ground up.
-                        Covers essential topics including Python programming, mathematics for machine learning,
-                        machine learning fundamentals, and deep learning concepts. Perfect for Spanish-speaking beginners.
+                        An interactive six-axis robot playground for learning robotics and coding
+                        with real Python, live forward and inverse kinematics, guided challenges,
+                        and a browser-based 3D simulator.
                     </p>
+                    <ul class="project-proof">
+                        <li>Runs entirely in the browser with no account, backend, or server-side data storage.</li>
+                        <li>Programs a kinematically modeled robot through joint and Cartesian commands.</li>
+                    </ul>
                     <div class="tech-stack">
+                        <span class="tech-tag">Three.js</span>
                         <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Machine Learning</span>
-                        <span class="tech-tag">Deep Learning</span>
-                        <span class="tech-tag">Mathematics</span>
-                        <span class="tech-tag">Spanish</span>
+                        <span class="tech-tag">Pyodide</span>
+                        <span class="tech-tag">Robotics</span>
+                        <span class="tech-tag">Kinematics</span>
                     </div>
                     <div class="project-links">
-                        <a href="https://www.youtube.com/playlist?list=PLswZ-W5MlspXhrMDtrAJ6IA5MpR0Uu82K" target="_blank" rel="noopener noreferrer" class="project-link">
-                            <i class="fab fa-youtube"></i> Watch Course
+                        <a href="roboplay/" class="project-link">
+                            <i class="fas fa-play"></i> Launch RoboPlay
                         </a>
                     </div>
                 </div>
@@ -969,7 +890,7 @@
                     <div class="project-icon">
                         <i class="fas fa-compact-disc"></i>
                     </div>
-                    <h3>Compas</h3>
+                    <h4>Compas</h4>
                     <p>
                         Open-source, MIT-licensed professional DJ application built with a Rust
                         audio core, TypeScript UI, and Tauri 2 desktop shell. Compas focuses on
@@ -1003,7 +924,7 @@
                     <div class="project-icon">
                         <i class="fas fa-music"></i>
                     </div>
-                    <h3>DJ Vibe Bar</h3>
+                    <h4>DJ Vibe Bar</h4>
                     <p>
                         A multi-provider cloud-based jukebox platform that lets users create and share
                         music queues for personal parties using their existing streaming accounts.
@@ -1028,6 +949,122 @@
                         <a href="https://djvibebar.com" target="_blank" rel="noopener noreferrer" class="project-link">
                             <i class="fas fa-globe"></i> Visit Site
                         </a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-icon">
+                        <i class="fas fa-pen-ruler"></i>
+                    </div>
+                    <h4>Canvas Whiteboard</h4>
+                    <p>
+                        A calm, lightweight whiteboard for sketching ideas with a mouse, finger,
+                        or pressure-sensitive pen. Drawings save locally and export as PNG without
+                        requiring an account or backend.
+                    </p>
+                    <ul class="project-proof">
+                        <li>Pressure-aware pen input, highlighter, eraser, colors, and adjustable stroke sizes.</li>
+                        <li>Responsive iPad and desktop interface with undo, redo, grid, and local autosave.</li>
+                    </ul>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Canvas API</span>
+                        <span class="tech-tag">Pointer Events</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Touch &amp; Pen</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="whiteboard/" class="project-link">
+                            <i class="fas fa-pen"></i> Open Whiteboard
+                        </a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h4>Arcade</h4>
+                    <p>
+                        One playful home for three browser classics: Snake, Tetris, and Cosmic
+                        Drift. Pick a game and jump in instantly from a computer or phone.
+                    </p>
+                    <ul class="project-proof">
+                        <li>Three complete games in one responsive, distraction-free playground.</li>
+                        <li>Keyboard, swipe, and purpose-built touch controls with no account or download.</li>
+                    </ul>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Canvas API</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Game Loops</span>
+                        <span class="tech-tag">Touch Controls</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="games/" class="project-link">
+                            <i class="fas fa-play"></i> Enter the Arcade
+                        </a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-icon">
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                    <h4>Inteligencia Artificial Desde Cero</h4>
+                    <p>
+                        A comprehensive video course series in Spanish teaching Artificial Intelligence from the ground up.
+                        Covers essential topics including Python programming, mathematics for machine learning,
+                        machine learning fundamentals, and deep learning concepts. Perfect for Spanish-speaking beginners.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Machine Learning</span>
+                        <span class="tech-tag">Deep Learning</span>
+                        <span class="tech-tag">Mathematics</span>
+                        <span class="tech-tag">Spanish</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://www.youtube.com/playlist?list=PLswZ-W5MlspXhrMDtrAJ6IA5MpR0Uu82K" target="_blank" rel="noopener noreferrer" class="project-link">
+                            <i class="fab fa-youtube"></i> Watch Course
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="research-interests">
+                <h3>Systems &amp; Scientific Computing</h3>
+                <p>
+                    Beyond industrial software, I explore computational science, numerical methods,
+                    optimization, and simulation. Projects in robot kinematics and audio processing
+                    give me room to connect mathematics with working software. I also teach Python,
+                    mathematics for machine learning, and AI fundamentals in Spanish.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section">
+        <div class="container">
+            <h2 class="section-title">Core Competencies</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <div class="skill-category-header">
+                        <i class="fas fa-code"></i>
+                        <h3>Backend &amp; Platform Software</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Rust &amp; Python</span>
+                        <span class="skill-tag">Backend Architecture</span>
+                        <span class="skill-tag">Databases &amp; APIs</span>
+                        <span class="skill-tag">Systems Programming</span>
+                        <span class="skill-tag">Data Workflows</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-category-header">
+                        <i class="fas fa-cogs"></i>
+                        <h3>Industrial Systems &amp; Connectivity</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">PLC, HMI &amp; SCADA Systems</span>
+                        <span class="skill-tag">EtherNet/IP &amp; Industrial Networking</span>
+                        <span class="skill-tag">Traceability &amp; MES Integration</span>
+                        <span class="skill-tag">Robotics &amp; Vision Integration</span>
                     </div>
                 </div>
             </div>
@@ -1071,7 +1108,11 @@
 
     <section id="social" class="social-section">
         <div class="container">
-            <h2 class="section-title">Let's Connect</h2>
+            <h2 class="section-title">Let's Build Industrial Software</h2>
+            <p class="section-intro">
+                Connect with me to talk about machine connectivity, industrial platforms,
+                and open-source software. You can find my projects, writing, and updates below.
+            </p>
             <div class="social-grid">
                 <div class="social-card">
                     <div class="social-icon">
@@ -1089,9 +1130,9 @@
                 </div>
                 <div class="social-card">
                     <div class="social-icon">
-                        <i class="fab fa-twitter"></i>
+                        <i class="fab fa-x-twitter" aria-hidden="true"></i>
                     </div>
-                    <h3>Twitter / X</h3>
+                    <h3>X</h3>
                     <a href="https://x.com/sergiogallegosh" target="_blank" rel="noopener noreferrer">Follow updates</a>
                 </div>
                 <div class="social-card">
