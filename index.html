@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sergio Gallegos | Industrial Software Engineer</title>
-    <meta name="description" content="Industrial software engineer building backend, connectivity, and platform software for machines and manufacturing systems. 14+ years in controls and automation.">
+    <meta name="description" content="Software engineer building open-source products for industrial automation, grounded in 14+ years of electrical controls, PLC, robotics, vision, and motion control experience.">
     <link rel="canonical" href="https://sergiogallegos.net/">
     <meta property="og:title" content="Sergio Gallegos | Industrial Software Engineer">
-    <meta property="og:description" content="Backend, connectivity, and platform software for industrial systems, grounded in 14+ years of controls and automation experience.">
+    <meta property="og:description" content="Building software for the industry I know from the inside. Systems programming, backend architecture, and industrial products grounded in 14+ years of controls engineering.">
     <meta property="og:url" content="https://sergiogallegos.net/">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://sergiogallegos.net/me36.png">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Sergio Gallegos | Industrial Software Engineer">
-    <meta name="twitter:description" content="Backend, connectivity, and platform software for industrial systems, grounded in 14+ years of controls and automation experience.">
+    <meta name="twitter:description" content="Building software for the industry I know from the inside. Systems programming, backend architecture, and industrial products grounded in 14+ years of controls engineering.">
     <meta name="twitter:image" content="https://sergiogallegos.net/me36.png">
     <link rel="icon" href="favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
@@ -656,6 +656,48 @@
             }
         }
 
+        /* Three complementary areas of industrial software. */
+        .industrial-stack { max-width: 860px; margin: 0 auto; }
+        .stack-layers { list-style: none; display: grid; gap: 0.75rem; }
+        .stack-layer {
+            display: grid; grid-template-columns: 90px minmax(0, 1fr); gap: 1.25rem;
+            padding: 1.5rem; border: 1px solid var(--c-border); border-radius: 12px;
+            background: var(--c-surface); color: var(--c-text); text-decoration: none;
+            transition: border-color 0.2s ease;
+        }
+        .stack-layer:hover { border-color: var(--c-text); }
+        a:focus-visible, button:focus-visible { outline: 2px solid var(--c-text); outline-offset: 5px; }
+        .layer-number, .project-layer {
+            font-size: 0.875rem; font-weight: 600; color: var(--c-text-secondary);
+        }
+        .layer-number { border-right: 1px solid var(--c-border); padding-right: 1rem; }
+        .stack-layer strong { display: block; font-size: 1.125rem; }
+        .stack-layer p { color: var(--c-text-secondary); margin: 0.35rem 0; }
+        .stack-project { font-size: 0.875rem; }
+        .stack-note { margin-top: 1.25rem; color: var(--c-text-secondary); font-size: 0.875rem; }
+        .featured-projects { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        .featured-projects .project-card { padding: 1.5rem; display: flex; flex-direction: column; min-width: 0; }
+        .featured-projects .project-links { margin-top: auto; flex-wrap: wrap; }
+        .project-layer { margin-bottom: 0.5rem; }
+        .project-status { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.25rem; }
+        .project-status span {
+            border: 1px solid var(--c-border); border-radius: 5px; padding: 0.2rem 0.5rem;
+            font-size: 0.875rem; color: var(--c-text);
+        }
+        .package-stats { margin-bottom: 1.25rem; font-size: 0.875rem; }
+        .package-stats a { color: var(--c-text); }
+        .package-stats img { display: block; width: auto; height: 20px; max-width: 100%; margin-top: 0.5rem; }
+        .writing-category { display: block; font-size: 0.875rem; color: var(--c-text-secondary); margin-bottom: 0.75rem; }
+        @media (max-width: 960px) { .featured-projects { grid-template-columns: 1fr; } }
+        @media (max-width: 480px) {
+            .stack-layer { grid-template-columns: 1fr; gap: 0.5rem; padding: 1.25rem; }
+            .layer-number { border-right: 0; padding-right: 0; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after { animation: none !important; transition: none !important; }
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .nav-links {
@@ -742,11 +784,11 @@
             <div class="hero-content">
                 <p class="hero-name">Sergio Gallegos</p>
                 <h1>Industrial Software Engineer</h1>
-                <p class="subtitle">Backend, connectivity, and platform software for machines and manufacturing systems.</p>
+                <p class="subtitle">Building software for the industry I know from the inside.</p>
                 <p class="description">
-                    I bring 14+ years in controls and automation to software for industrial systems.
-                    My focus is machine connectivity, SCADA, and OT data, using modern software engineering
-                    practices informed by real plant-floor experience.
+                    My focus is software engineering: systems programming, backend architecture,
+                    and open-source products for industrial automation. I build on 14+ years
+                    designing electrical controls and programming the machines these products serve.
                 </p>
                 <p class="description hero-links" style="font-size: 0.95rem; margin-bottom: 2rem;">
                     <a href="https://www.linkedin.com/in/sergio-gallegos-24271a66/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
@@ -757,6 +799,36 @@
                 </p>
                 <a href="#projects" class="cta-button">Explore Industrial Projects</a>
             </div>
+        </div>
+    </section>
+
+    <section id="industrial-stack" class="section" aria-labelledby="stack-title">
+        <div class="container">
+            <h2 id="stack-title" class="section-title">Three Layers of Industrial Software</h2>
+            <p class="section-intro">My core open-source work spans control logic, machine connectivity, and operator interfaces.</p>
+            <figure class="industrial-stack">
+                <ol class="stack-layers" reversed>
+                    <li><a class="stack-layer" href="#openwebhmi">
+                        <span class="layer-number">Layer 3</span>
+                        <div><strong>HMI / SCADA Visualization</strong>
+                            <p>Give operators a view of machine state and a way to interact with the process.</p>
+                            <span class="stack-project">OpenWebHMI · In development</span></div>
+                    </a></li>
+                    <li><a class="stack-layer" href="#rust-ethernet-ip">
+                        <span class="layer-number">Layer 2</span>
+                        <div><strong>Industrial Connectivity / Field Protocols</strong>
+                            <p>Connect applications and gateways to PLC tags through EtherNet/IP and CIP.</p>
+                            <span class="stack-project">Rust EtherNet/IP · Used in production</span></div>
+                    </a></li>
+                    <li><a class="stack-layer" href="#tinyplc">
+                        <span class="layer-number">Layer 1</span>
+                        <div><strong>Control Engine / Compiler &amp; Runtime</strong>
+                            <p>Compile Structured Text into native control logic and explore how a PLC executes it.</p>
+                            <span class="stack-project">tinyPLC · Educational implementation</span></div>
+                    </a></li>
+                </ol>
+                <figcaption class="stack-note">An architectural view of my work: control logic produces machine state, connectivity exposes it, and HMI/SCADA makes it useful to operators. These are complementary projects at different stages, with integration a future direction. Layer numbers describe this portfolio, not OSI or ISA-95 levels.</figcaption>
+            </figure>
         </div>
     </section>
 
@@ -771,19 +843,22 @@
                 </div>
                 <div class="about-text">
                     <p>
-                        I build software for industrial systems, drawing on 14+ years in controls and
-                        automation. My work as a Senior Engineer includes designing and integrating
-                        PLCs, HMIs, robotics, and vision systems for automated assembly machines.
+                        I’m a software engineer building products for industrial automation, with a
+                        foundation in 14+ years of controls engineering. My experience spans electrical
+                        system design and programming PLCs, HMIs, robots, machine vision, and motion
+                        control for automated machinery.
                     </p>
                     <p>
-                        That background shapes how I approach software: connectivity has to work with
-                        real equipment, data has to be useful to operators and other systems, and
-                        reliability matters long after the first successful demo.
+                        Working on those systems led me deeper into the software behind them. Today,
+                        I’m applying that experience through systems programming, backend architecture,
+                        APIs, and reusable libraries, turning problems I know from machine automation
+                        into software products other engineers can build on.
                     </p>
                     <p>
-                        Today, I’m focused on backend and product engineering for industrial platforms.
-                        My projects include a Rust EtherNet/IP library for Allen-Bradley PLCs and
-                        OpenWebHMI, an open-source HMI/SCADA prototype built with Rust and Python scripting.
+                        That progression connects my core projects: Rust EtherNet/IP brings PLC
+                        connectivity to applications and is already used in production. OpenWebHMI
+                        is in development for customer applications on real machinery. tinyPLC is
+                        where I study compiler and runtime design through an educational control engine.
                     </p>
                     <p>
                         My foundation is in Electromechanical Engineering. I’m currently pursuing a
@@ -800,14 +875,16 @@
 
     <section id="projects" class="section">
         <div class="container">
-            <h2 class="section-title">Featured Projects</h2>
-            <p class="section-intro">Software that connects industrial equipment to the applications built around it.</p>
-            <div class="projects-grid">
-                <div class="project-card">
+            <h2 class="section-title">Primary Industrial Open Source</h2>
+            <p class="section-intro">Three projects, one focus: understanding and building the software behind industrial systems.</p>
+            <div class="projects-grid featured-projects">
+                <div class="project-card" id="rust-ethernet-ip">
                     <div class="project-icon">
                         <i class="fab fa-rust"></i>
                     </div>
+                    <div class="project-layer">Layer 2 · Industrial Connectivity</div>
                     <h3>Rust EtherNet/IP</h3>
+                    <div class="project-status"><span>Used in production</span><span>Hardware verified</span></div>
                     <p>
                         Connects backend applications to Allen-Bradley CompactLogix and ControlLogix
                         PLCs through EtherNet/IP. Built in Rust, validated on real hardware, and
@@ -815,7 +892,7 @@
                     </p>
                     <ul class="project-proof">
                         <li>Validated on real Allen-Bradley hardware: 5069-L320ERMS3 fw35 and 1756-L81ES fw37.</li>
-                        <li>More than 5,000 crate downloads, plus NuGet distribution for .NET users.</li>
+                        <li>Rust, C#, and Python APIs for application and gateway integration.</li>
                     </ul>
                     <div class="tech-stack">
                         <span class="tech-tag">Rust</span>
@@ -823,6 +900,11 @@
                         <span class="tech-tag">Allen-Bradley PLCs</span>
                         <span class="tech-tag">C#</span>
                         <span class="tech-tag">Python</span>
+                    </div>
+                    <div class="package-stats">
+                        <a href="https://crates.io/crates/rust-ethernet-ip" target="_blank" rel="noopener noreferrer">Package &amp; download stats
+                            <img src="https://img.shields.io/crates/d/rust-ethernet-ip?label=crates.io%20downloads" alt="Rust EtherNet/IP downloads on crates.io" loading="lazy" height="20">
+                        </a>
                     </div>
                     <div class="project-links">
                         <a href="https://rustethernetip.com" target="_blank" rel="noopener noreferrer" class="project-link">
@@ -833,15 +915,17 @@
                         </a>
                     </div>
                 </div>
-                <div class="project-card">
+                <div class="project-card" id="openwebhmi">
                     <div class="project-icon">
                         <i class="fas fa-industry"></i>
                     </div>
+                    <div class="project-layer">Layer 3 · HMI / SCADA</div>
                     <h3>OpenWebHMI</h3>
+                    <div class="project-status"><span>In development</span></div>
                     <p>
-                        An open-source HMI/SCADA platform in the prototype stage, exploring industrial
-                        monitoring and control with a Rust gateway runtime and Python scripting.
-                        Visit the project website to learn about its architecture and direction.
+                        An open-source HMI/SCADA platform in active development, targeting real
+                        customer applications and production machinery. A Rust gateway runtime
+                        and Python scripting support industrial monitoring and control.
                     </p>
                     <div class="tech-stack">
                         <span class="tech-tag">Rust</span>
@@ -856,8 +940,29 @@
                         </a>
                     </div>
                 </div>
+                <div class="project-card" id="tinyplc">
+                    <div class="project-icon"><i class="fas fa-microchip" aria-hidden="true"></i></div>
+                    <div class="project-layer">Layer 1 · Control Engine</div>
+                    <h3>tinyPLC</h3>
+                    <div class="project-status"><span>In implementation</span><span>Education &amp; research</span></div>
+                    <p>A small PLC compiler and runtime research project for learning how control
+                        engines work, from a Structured Text subset through a Rust frontend and
+                        LLVM IR to ahead-of-time native code.</p>
+                    <ul class="project-proof">
+                        <li>Implemented: host-tested compiler and ARM Cortex-M object generation.</li>
+                        <li>Planned: native runtime integration in C on FreeRTOS / STM32.</li>
+                        <li>For education and research only; not for real machinery or safety functions.</li>
+                    </ul>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Rust</span><span class="tech-tag">Structured Text</span>
+                        <span class="tech-tag">LLVM</span><span class="tech-tag">C</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/sergiogallegos/tinyplc" target="_blank" rel="noopener noreferrer" class="project-link"><i class="fab fa-github" aria-hidden="true"></i> View Code</a>
+                    </div>
+                </div>
             </div>
-            <h3 class="project-group-title">More Software &amp; Experiments</h3>
+            <h3 class="project-group-title">Systems, Simulation &amp; Audio</h3>
             <div class="projects-grid">
                 <div class="project-card">
                     <div class="project-icon">
@@ -951,6 +1056,9 @@
                         </a>
                     </div>
                 </div>
+            </div>
+            <h3 class="project-group-title">Interactive Web Experiments &amp; Tools</h3>
+            <div class="projects-grid">
                 <div class="project-card">
                     <div class="project-icon">
                         <i class="fas fa-pen-ruler"></i>
@@ -1002,6 +1110,9 @@
                         </a>
                     </div>
                 </div>
+            </div>
+            <h3 class="project-group-title">Teaching &amp; Learning</h3>
+            <div class="projects-grid">
                 <div class="project-card">
                     <div class="project-icon">
                         <i class="fab fa-youtube"></i>
@@ -1065,6 +1176,8 @@
                         <span class="skill-tag">EtherNet/IP &amp; Industrial Networking</span>
                         <span class="skill-tag">Traceability &amp; MES Integration</span>
                         <span class="skill-tag">Robotics &amp; Vision Integration</span>
+                        <span class="skill-tag">Motion Control Programming</span>
+                        <span class="skill-tag">Electrical Controls Design</span>
                     </div>
                 </div>
             </div>
@@ -1076,6 +1189,7 @@
             <h2 class="section-title">Technical Writing</h2>
             <div class="writing-grid">
                 <a href="blog/why-i-wrote-an-ethernet-ip-driver-in-rust.html" class="writing-card">
+                    <span class="writing-category">Industrial Systems Architecture</span>
                     <h3>Why I Wrote an EtherNet/IP Driver in Rust</h3>
                     <p>
                         A practical engineering story about building PLC connectivity for real
@@ -1085,6 +1199,7 @@
                     <div class="writing-meta">Read article</div>
                 </a>
                 <a href="blog/how-i-got-here.html" class="writing-card">
+                    <span class="writing-category">Engineering Journey</span>
                     <h3>How I Got Here</h3>
                     <p>
                         From a working-class neighborhood in Mexico to manufacturing, controls,
@@ -1094,6 +1209,7 @@
                     <div class="writing-meta">Read article</div>
                 </a>
                 <a href="blog/rethinking-the-scada-stack-rust-runtime-python-scripting.html" class="writing-card">
+                    <span class="writing-category">Industrial Systems Architecture</span>
                     <h3>Rethinking the SCADA Stack: Rust Runtime, Python 3.11+ Scripting</h3>
                     <p>
                         A technical argument for OpenWebHMI's architecture: Rust for the gateway,

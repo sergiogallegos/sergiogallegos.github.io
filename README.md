@@ -6,7 +6,7 @@
 
 **Sergio Gallegos — Industrial Software Engineer**
 
-Backend, connectivity, and platform software for machines and manufacturing systems, grounded in 14+ years of controls and automation experience.
+Building software for the industry I know from the inside. My focus is systems programming, backend architecture, and open-source products for industrial automation, building on 14+ years of electrical controls design and programming PLCs, HMIs, robots, machine vision, and motion control.
 
 ## 🎯 Professional Profile
 
@@ -32,14 +32,21 @@ Backend, connectivity, and platform software for machines and manufacturing syst
 ## 🚀 Featured Projects
 
 ### [Rust Ethernet/IP](https://github.com/sergiogallegos/rust-ethernet-ip)
-Production-focused EtherNet/IP library for Allen-Bradley CompactLogix and ControlLogix PLCs, validated on real hardware (5069-L320ERMS3 fw35, 1756-L81ES fw37), published on crates.io and NuGet, with Rust/C#/Python wrappers. More than 5,000 crate downloads.
+Production-used EtherNet/IP library for Allen-Bradley CompactLogix and ControlLogix PLCs, validated on real hardware (5069-L320ERMS3 fw35, 1756-L81ES fw37), published on crates.io and NuGet, with Rust/C#/Python wrappers. Live crate download statistics are linked from the homepage.
 
 **Technologies:** Rust, EtherNet/IP, Allen-Bradley PLCs, C#, Python
 
 ### [OpenWebHMI](https://openwebhmi.com)
-Open-source HMI/SCADA platform in the prototype stage, exploring industrial monitoring and control with a Rust gateway runtime and Python scripting. Visit the project website to learn about its architecture and direction.
+Open-source HMI/SCADA platform in active development for customer applications on real production machinery, with a Rust gateway runtime and Python scripting.
 
 **Technologies:** Rust, Python, HMI, SCADA, Machine Connectivity
+
+### [tinyPLC](https://github.com/sergiogallegos/tinyplc)
+Educational PLC compiler and runtime research project in implementation. The Rust Structured Text frontend, LLVM IR emission, host AOT execution, and ARM object generation are implemented. C runtime integration on FreeRTOS/STM32 is planned. Education and research only; not for real machinery or safety functions.
+
+**Technologies:** Rust, Structured Text, LLVM, C
+
+The homepage presents these projects as three complementary layers: control engine/compiler/runtime (tinyPLC, Layer 1), industrial connectivity/field protocols (Rust EtherNet/IP, Layer 2), and HMI/SCADA visualization (OpenWebHMI, Layer 3). These portfolio labels do not imply OSI/ISA-95 levels or an already integrated production stack.
 
 ## More Software & Experiments
 
