@@ -50,6 +50,13 @@ The homepage presents these projects as three complementary layers: control engi
 
 ## More Software & Experiments
 
+### [Curiosity Lab](https://curiositylab.science/)
+An independent iPad app where children explore science, mathematics, and creativity through hands-on experiments. Built with SwiftUI, with offline activities, English and Spanish support, and a calm experience without ads or analytics.
+
+**Status:** Coming soon to the App Store.
+
+**Technologies:** Swift, SwiftUI, iPadOS, Interactive Simulation
+
 ### [RoboPlay](https://sergiogallegos.net/roboplay/)
 An interactive six-axis robot playground for learning robotics and coding with real Python, forward and inverse kinematics, guided challenges, and a browser-based 3D simulator.
 
