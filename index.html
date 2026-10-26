@@ -125,6 +125,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 1rem;
             padding: 0.875rem 0;
             position: relative;
         }
@@ -140,7 +141,9 @@
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 1.25rem;
+            align-items: center;
+            margin-left: auto;
         }
 
         .nav-links a {
@@ -154,6 +157,51 @@
 
         .nav-links a:hover {
             color: var(--c-text);
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            min-height: 44px;
+            padding: 0.65rem 1.25rem;
+            border: 1px solid var(--c-border);
+            border-radius: 980px;
+            color: var(--c-text);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: background 0.2s ease;
+        }
+
+        .contact-link:hover {
+            background: var(--c-bg-alt);
+        }
+
+        .contact-link-primary {
+            background: var(--c-accent);
+            border-color: transparent;
+            color: var(--c-accent-contrast);
+        }
+
+        .contact-link-primary:hover {
+            background: var(--c-accent-hover);
+        }
+
+        .contact-link:focus-visible {
+            outline: 2px solid var(--c-text);
+            outline-offset: 4px;
+        }
+
+        .contact-link i {
+            font-size: 1.2em;
+        }
+
+        .nav-contact {
+            flex-shrink: 0;
+            font-size: 0.85rem;
+            padding: 0.5rem 0.9rem;
         }
 
         .menu-toggle {
@@ -214,16 +262,18 @@
             animation: fadeInUp 0.8s ease 0.3s both;
         }
 
-        .hero-links a {
-            color: var(--c-text);
-            text-decoration: underline;
-            text-underline-offset: 3px;
-            margin-right: 1rem;
+        .hero-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
         }
 
-        .hero-links .sep {
-            color: var(--c-border);
-            margin-right: 1rem;
+        .contact-note {
+            color: var(--c-text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
         }
 
         .cta-button {
@@ -699,7 +749,15 @@
         }
 
         /* Responsive */
-        @media (max-width: 768px) {
+        @media (max-width: 960px) {
+            .logo {
+                margin-right: auto;
+            }
+
+            .nav-contact {
+                padding: 0.5rem 0.75rem;
+            }
+
             .nav-links {
                 display: none;
                 position: absolute;
@@ -723,7 +781,9 @@
             .menu-toggle {
                 display: block;
             }
+        }
 
+        @media (max-width: 768px) {
             .hero-content h1 {
                 font-size: clamp(2rem, 7vw, 2.5rem);
             }
@@ -751,6 +811,16 @@
                 grid-template-columns: repeat(2, 1fr);
             }
         }
+
+        @media (max-width: 380px) {
+            .nav-contact {
+                min-width: 44px;
+            }
+
+            .nav-contact span {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
@@ -759,14 +829,6 @@
         <div class="container">
             <div class="nav-content">
                 <a href="#home" class="logo">Sergio Gallegos</a>
-                <button
-                    class="menu-toggle"
-                    aria-label="Toggle navigation"
-                    aria-expanded="false"
-                    aria-controls="primary-navigation"
-                >
-                    <i class="fas fa-bars"></i>
-                </button>
                 <ul id="primary-navigation" class="nav-links">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
@@ -775,6 +837,17 @@
                     <li><a href="#writing">Writing</a></li>
                     <li><a href="#social">Connect</a></li>
                 </ul>
+                <a href="https://x.com/sergiogallegosh" target="_blank" rel="noopener noreferrer" class="contact-link contact-link-primary nav-contact" aria-label="Message me on X (DMs open)">
+                    <i class="fab fa-x-twitter" aria-hidden="true"></i> <span>Message me</span>
+                </a>
+                <button
+                    class="menu-toggle"
+                    aria-label="Toggle navigation"
+                    aria-expanded="false"
+                    aria-controls="primary-navigation"
+                >
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
         </div>
     </nav>
@@ -790,13 +863,15 @@
                     and open-source products for industrial automation. I build on 14+ years
                     designing electrical controls and programming the machines these products serve.
                 </p>
-                <p class="description hero-links" style="font-size: 0.95rem; margin-bottom: 2rem;">
-                    <a href="https://www.linkedin.com/in/sergio-gallegos-24271a66/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                    <span class="sep">/</span>
-                    <a href="https://github.com/sergiogallegos" target="_blank" rel="noopener noreferrer">GitHub</a>
-                    <span class="sep">/</span>
-                    <a href="https://www.youtube.com/@imsergiog" target="_blank" rel="noopener noreferrer">YouTube</a>
-                </p>
+                <div class="hero-links">
+                    <a href="https://x.com/sergiogallegosh" target="_blank" rel="noopener noreferrer" class="contact-link contact-link-primary">
+                        <i class="fab fa-x-twitter" aria-hidden="true"></i> Message on X
+                    </a>
+                    <a href="https://www.linkedin.com/in/sergio-gallegos-24271a66/" target="_blank" rel="noopener noreferrer" class="contact-link">
+                        <i class="fab fa-linkedin" aria-hidden="true"></i> LinkedIn
+                    </a>
+                </div>
+                <p class="contact-note">My DMs are open on X — the fastest way to reach me.</p>
                 <a href="#projects" class="cta-button">Explore Industrial Projects</a>
             </div>
         </div>
