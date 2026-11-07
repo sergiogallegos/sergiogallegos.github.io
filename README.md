@@ -6,14 +6,14 @@
 
 **Sergio Gallegos — Industrial Software Engineer**
 
-My career spans 14+ years in industrial automation, including electrical controls design and programming PLCs, HMIs, robots, machine vision, and motion control. I build industrial connectivity libraries and control software, alongside applications in audio, education, and simulation. My software focus is systems programming, backend architecture, and open-source development.
+My career spans 14+ years in industrial automation, including electrical controls design and programming PLCs, HMIs, robots, machine vision, and motion control. I build industrial connectivity libraries and control software, including Rust EtherNet/IP, a PLC connectivity library used in production. My software focus is systems programming, backend architecture, and open-source development. I also teach Python, mathematics for machine learning, and AI fundamentals in Spanish on YouTube.
 
 ## 🎯 Professional Profile
 
 - **Education:** Electromechanical Engineering; currently pursuing an M.S. in Software Engineering, expected spring 2027
 - **Experience:** 14+ years in controls and automation, including PLCs, HMIs, robotics, and vision systems
-- **Current Focus:** Systems programming, backend architecture, and applications spanning industrial platforms, audio, education, and simulation
-- **Research Interests:** Computational science, numerical methods, optimization, and simulation
+- **Current Focus:** Industrial software, systems programming, backend architecture, and open-source development; teaching Python, mathematics, and AI in Spanish
+- **Research Interests:** Computational science, numerical methods, and optimization
 
 ## 🛠️ Core Competencies
 
