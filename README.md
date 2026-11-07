@@ -4,7 +4,7 @@
 
 ## 👨‍💼 About
 
-**Sergio Gallegos — Software Engineer**
+**Sergio Gallegos — Industrial Software Engineer**
 
 My career spans 14+ years in industrial automation, including electrical controls design and programming PLCs, HMIs, robots, machine vision, and motion control. I build industrial connectivity libraries and control software, alongside applications in audio, education, and simulation. My software focus is systems programming, backend architecture, and open-source development.
 
